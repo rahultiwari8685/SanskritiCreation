@@ -35,7 +35,17 @@ app.use(limiter);
 app.use(
   cors({
     origin: [
-      "*",
+      "https://sanskritisutracreations.com",
+      "https://admin.sanskritisutracreations.com",
+    ],
+    credentials: true,
+  }),
+);
+
+app.options(
+  "*",
+  cors({
+    origin: [
       "https://sanskritisutracreations.com",
       "https://admin.sanskritisutracreations.com",
     ],
