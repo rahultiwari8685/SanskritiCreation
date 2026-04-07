@@ -1,30 +1,6 @@
 import React from 'react'
-import {
-  CContainer,
-  CRow,
-  CCol,
-  CCard,
-  CCardBody,
-  CForm,
-  CFormInput,
-  CButton,
-  CInputGroup,
-  CInputGroupText,
-} from '@coreui/react'
-
-import * as yup from 'yup'
-import { useNavigate } from 'react-router-dom'
-import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
-import CIcon from '@coreui/icons-react'
-import { cilUser, cilLockLocked } from '@coreui/icons'
-import setting from '../../../setting.json'
-import secureLocalStorage from 'react-secure-storage'
-
-const schema = yup.object().shape({
-  email: yup.string().email().required('Enter your valid email'),
-  password: yup.string().required('Password is required'),
-})
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -32,215 +8,84 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    reset,
-    setValue,
-    watch,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) })
+  } = useForm()
 
-  const login = (data) => {
-    // navigate('/dashboard')
-    let lg = {
-      email: data.email,
-      password: data.password,
-    }
-
-    fetch(setting.api + '/api/auth/login', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(lg),
-      mode: 'cors',
-    })
-      .then((response) => response.json())
-      .then((dd) => {
-        if (dd.result === 'success') {
-          secureLocalStorage.setItem('logininfo', JSON.stringify({ ...dd.user, token: dd.token }))
-          navigate('/dashboard')
-        } else {
-          alert(dd.message || 'Login failed')
-        }
-      })
-      .catch((error) => console.error(error))
+  const onSubmit = (data) => {
+    console.log(data)
+    navigate('/dashboard')
   }
 
   return (
-    <div style={styles.wrapper}>
-      {/* Background Abstract Illustration */}
-      <div style={styles.leftPane}>
-        <div style={styles.leftContent}>
-          <h1 style={styles.title}>Sankriti Creation</h1>
-          {/* <p style={styles.subtitle}>
-            Data-driven political insights, leader performance analysis, sentiment tracking, and
-            detailed survey intelligence — all on one platform.
-          </p> */}
+    <div className="min-h-screen flex">
+      {/* LEFT SIDE - Branding */}
+      <div
+        className="hidden lg:flex w-1/2 bg-cover bg-center relative"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1581091215367-59ab6b3b3e7c')",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/60"></div>
 
-          {/* <div style={styles.highlights}>
-            <p>✓ AI-powered Survey Reports</p>
-            <p>✓ Leader Rating & Popularity Graphs</p>
-            <p>✓ Real-time Public Sentiment</p>
-            <p>✓ Political Data Analytics Dashboard</p>
-          </div> */}
+        <div className="relative z-10 flex flex-col justify-center px-16 text-white">
+          <h1 className="text-5xl font-extrabold mb-4">
+            Print<span className="text-pink-500">Brand</span>
+          </h1>
+          <p className="text-lg text-gray-300 mb-6">Professional Printing & Branding Solutions</p>
+
+          <ul className="space-y-2 text-sm">
+            <li>✔ Business Cards & Flyers</li>
+            <li>✔ Custom Branding Materials</li>
+            <li>✔ High Quality Print Services</li>
+          </ul>
         </div>
       </div>
 
-      {/* Right Login Card */}
-      <div style={styles.rightPane}>
-        <CCard style={styles.card}>
-          <CCardBody>
-            <h2 className="text-center mb-4" style={styles.loginTitle}>
-              Login to Your Dashboard
-            </h2>
+      {/* RIGHT SIDE - LOGIN */}
+      <div className="flex w-full lg:w-1/2 items-center justify-center bg-gray-100 p-6">
+        <div className="w-full max-w-md bg-white/70 backdrop-blur-lg shadow-2xl rounded-2xl p-8">
+          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Login to Dashboard</h2>
 
-            <CForm onSubmit={handleSubmit(login)}>
-              {/* Email */}
-              <CInputGroup className="mb-3">
-                <CInputGroupText style={styles.iconBox}>
-                  <CIcon icon={cilUser} />
-                </CInputGroupText>
-                <CFormInput
-                  type="email"
-                  placeholder="Email Address"
-                  style={styles.input}
-                  {...register('email')}
-                />
-              </CInputGroup>
-              {errors.email && <p style={styles.error}>{errors.email.message}</p>}
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Email */}
+            <div>
+              <input
+                type="email"
+                placeholder="Email Address"
+                {...register('email', { required: 'Email is required' })}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 outline-none"
+              />
+              {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+            </div>
 
-              {/* Password */}
-              <CInputGroup className="mb-3">
-                <CInputGroupText style={styles.iconBox}>
-                  <CIcon icon={cilLockLocked} />
-                </CInputGroupText>
-                <CFormInput
-                  type="password"
-                  placeholder="Password"
-                  style={styles.input}
-                  {...register('password')}
-                />
-              </CInputGroup>
-              {errors.password && <p style={styles.error}>{errors.password.message}</p>}
+            {/* Password */}
+            <div>
+              <input
+                type="password"
+                placeholder="Password"
+                {...register('password', { required: 'Password is required' })}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-pink-500 outline-none"
+              />
+              {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+            </div>
 
-              <CButton type="submit" className="w-100 py-2 mt-2" style={styles.button}>
-                Sign In
-              </CButton>
-            </CForm>
+            {/* Button */}
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-2 rounded-lg font-semibold hover:opacity-90 transition"
+            >
+              Sign In
+            </button>
+          </form>
 
-            <p className="text-center mt-3" style={styles.signupText}>
-              Don't have an account? <span style={styles.signupLink}>Contact Admin</span>
-            </p>
-          </CCardBody>
-        </CCard>
+          <p className="text-center text-sm text-gray-600 mt-4">
+            Don’t have an account?{' '}
+            <span className="text-pink-500 font-semibold cursor-pointer">Contact Admin</span>
+          </p>
+        </div>
       </div>
     </div>
   )
-}
-
-/* ---------------- STYLES ---------------- */
-const styles = {
-  wrapper: {
-    minHeight: '100vh',
-    display: 'flex',
-    background: 'linear-gradient(135deg, #0a0f24 0%, #101426 100%)',
-    color: '#fff',
-  },
-
-  leftPane: {
-    width: '53%',
-    background:
-      "url('https://cdn.dribbble.com/users/1355613/screenshots/15657654/media/2da52d3a3d55c97c2abb83378574b88e.png') center/cover no-repeat",
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    padding: '60px',
-  },
-
-  leftContent: {
-    maxWidth: '500px',
-    backdropFilter: 'blur(4px)',
-    padding: '20px',
-  },
-
-  title: {
-    fontSize: '3rem',
-    fontWeight: '800',
-    marginBottom: '20px',
-    color: '#21d4fd',
-  },
-
-  subtitle: {
-    fontSize: '1.1rem',
-    marginBottom: '25px',
-    color: '#c7d3ff',
-    lineHeight: '1.5',
-  },
-
-  highlights: {
-    fontSize: '1rem',
-    color: '#fff',
-    lineHeight: '1.8',
-  },
-
-  rightPane: {
-    width: '47%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '40px',
-  },
-
-  card: {
-    width: '100%',
-    maxWidth: '420px',
-    background: 'rgba(255, 255, 255, 0.05)',
-    backdropFilter: 'blur(10px)',
-    borderRadius: '15px',
-    padding: '20px',
-    border: '1px solid rgba(255,255,255,0.1)',
-  },
-
-  loginTitle: {
-    color: '#21d4fd',
-    fontWeight: '700',
-  },
-
-  input: {
-    borderRadius: '8px',
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    border: 'none',
-    color: '#fff',
-  },
-
-  iconBox: {
-    backgroundColor: 'rgba(255,255,255,0.25)',
-    border: 'none',
-    color: '#fff',
-  },
-
-  button: {
-    background: 'linear-gradient(45deg, #21d4fd, #b721ff)',
-    border: 'none',
-    fontWeight: 'bold',
-    borderRadius: '8px',
-  },
-
-  signupText: {
-    color: '#ccc',
-    marginTop: '10px',
-  },
-
-  signupLink: {
-    color: '#21d4fd',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-  },
-
-  error: {
-    color: '#ff6b6b',
-    fontSize: '0.8rem',
-    marginTop: '-5px',
-  },
 }
 
 export default Login

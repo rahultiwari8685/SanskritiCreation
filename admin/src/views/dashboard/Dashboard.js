@@ -22,24 +22,24 @@ const Dashboard = () => {
   const [statsContent1, setStatsContent] = useState({})
   const [stastOperator1, setStatsOperator] = useState({})
 
-  const getDashboardWidgetData = async () => {
-    const res = await fetch(setting.api + '/api/getDashboardWidgetData', {
-      headers: {
-        // 'Content-Type': 'application/json',
-        // Authorization:
-        //   'Bearer ' + JSON.parse(secureLocalStorage.getItem('logininfo')).token,
-      },
-    })
-    const json = await res.json()
-    if (json.result === 'false') {
-      secureLocalStorage.clear()
-      navigate('/login')
-    } else {
-      setStatsAdmin(json.data)
-      setStatsContent(json.data)
-      setStatsOperator(json.data)
-    }
-  }
+  // const getDashboardWidgetData = async () => {
+  //   const res = await fetch(setting.api + '/api/getDashboardWidgetData', {
+  //     headers: {
+  //       // 'Content-Type': 'application/json',
+  //       // Authorization:
+  //       //   'Bearer ' + JSON.parse(secureLocalStorage.getItem('logininfo')).token,
+  //     },
+  //   })
+  //   const json = await res.json()
+  //   if (json.result === 'false') {
+  //     secureLocalStorage.clear()
+  //     navigate('/login')
+  //   } else {
+  //     setStatsAdmin(json.data)
+  //     setStatsContent(json.data)
+  //     setStatsOperator(json.data)
+  //   }
+  // }
 
   useEffect(() => {
     getDashboardWidgetData()
@@ -54,22 +54,22 @@ const Dashboard = () => {
     //   color: '#dc3545',
     // },
     {
-      title: 'Total University',
-      count: statsAdmin1.university,
+      title: 'Total Service',
+      count: 16,
       icon: cilSchool,
       label: 'University',
       color: '#198754',
     },
     {
-      title: 'Total Course',
-      count: statsAdmin1.courses,
+      title: 'Total Product',
+      count: 25,
       icon: cilLibrary,
       label: 'Course',
       color: '#fd7e14',
     },
     {
-      title: 'Total Blog',
-      count: statsAdmin1.blogs,
+      title: 'Total Orders',
+      count: 10,
       icon: cilNewspaper,
       label: 'Blog',
       color: '#0d6efd',
@@ -77,15 +77,15 @@ const Dashboard = () => {
   ]
   const statsContent = [
     {
-      title: 'Total Blog',
-      count: statsContent1.blogs,
+      title: 'Total Orders',
+      count: 10,
       icon: cilNewspaper,
       label: 'Blog',
       color: '#0d6efd',
     },
     {
       title: 'Total Query',
-      count: statsContent1.query,
+      count: 5,
       icon: cilCommentBubble,
       label: 'Query',
       color: '#fd7e14',
@@ -100,15 +100,15 @@ const Dashboard = () => {
     //   color: '#dc3545',
     // },
     {
-      title: 'Total University',
-      count: stastOperator1.university,
+      title: 'Total Service',
+      count: 20,
       icon: cilSchool,
       label: 'University',
       color: '#198754',
     },
     {
-      title: 'Total Course',
-      count: stastOperator1.courses,
+      title: 'Total Product',
+      count: 25,
       icon: cilLibrary,
       label: 'Course',
       color: '#fd7e14',
