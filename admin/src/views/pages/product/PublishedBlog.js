@@ -50,8 +50,8 @@ const PublishedNews = () => {
   //   fetchNews();
   // }, []);
 
-  const getAllBlog = async () => {
-    await fetch(setting.api + '/api/blogs/getAllBlog', {
+  const getAllProduct = async () => {
+    await fetch(setting.api + '/api/products/getAllProduct', {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -71,7 +71,7 @@ const PublishedNews = () => {
   }
 
   useEffect(() => {
-    getAllBlog()
+    getAllProduct()
   }, [])
 
   // const getUserName = (id) => {

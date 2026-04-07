@@ -25,13 +25,10 @@ import secureLocalStorage from 'react-secure-storage'
 
 const schema = yup.object().shape({
   title: yup.string().required('Title is required'),
-  // slug: yup.string().required("Slug is required"),
-  subtitle: yup.string().required('Subtitle is required'),
-  videoType: yup.string().required('Video source is required'),
-  type: yup.string().required('Video source is required'),
+  price: yup.string().required('Price is required'),
 })
 
-const News = () => {
+const Product = () => {
   const navigate = useNavigate()
 
   const [slugEdited, setSlugEdited] = useState(false)
@@ -51,29 +48,13 @@ const News = () => {
     resolver: yupResolver(schema),
     defaultValues: {
       title: '',
-      // slug: "",
       price: '',
       categories: [],
-      videoType: '',
-      type: '',
-      youtubeUrl: '',
-      videoFile: null,
       thumbnail: null,
     },
   })
 
   const formDataValues = watch()
-
-  useEffect(() => {
-    if (formDataValues.title && !slugEdited) {
-      const generatedSlug = formDataValues.title
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .trim()
-        .replace(/\s+/g, '-')
-      setValue('slug', generatedSlug)
-    }
-  }, [formDataValues.title, slugEdited, setValue])
 
   const toggleCategory = (id) => {
     const alreadySelected = formDataValues.categories.includes(id)
@@ -108,48 +89,13 @@ const News = () => {
     getAllCategory()
   }, [])
 
-  const getYouTubeId = (url) => {
-    try {
-      const parsedUrl = new URL(url)
-      if (parsedUrl.hostname === 'youtu.be') {
-        return parsedUrl.pathname.slice(1)
-      }
-      if (parsedUrl.searchParams.has('v')) {
-        return parsedUrl.searchParams.get('v')
-      }
-      if (parsedUrl.pathname.includes('/embed/')) {
-        return parsedUrl.pathname.split('/embed/')[1]
-      }
-    } catch (e) {
-      return null
-    }
-    return null
-  }
-
-  const saveBlog = async (data) => {
+  const saveProduct = async (data) => {
     const formData = new FormData()
 
     formData.append('title', data.title)
     formData.append('price', data.price)
-    // formData.append('type', data.type)
-    // formData.append('videoType', data.videoType)
-
-    // Category list must be JSON string
     formData.append('categories', JSON.stringify(data.categories))
-    formData.append('content', JSON.stringify(content)) // ✔ backend expects JSON
-
-    // YouTube
-    // if (data.videoType === '1') {
-    //   formData.append('youtubeUrl', data.youtubeUrl)
-    // }
-
-    // File Upload Mode
-    // if (data.videoType === '2') {
-    //   if (data.thumbnail?.[0]) {
-    //     formData.append('thumbnail', data.thumbnail[0]) // ✔ matches backend
-    //   }
-
-    // Content from EditorJS
+    formData.append('content', JSON.stringify(content))
 
     const endpoint = '/api/products/saveProduct'
 
@@ -178,7 +124,7 @@ const News = () => {
           </CCardHeader>
 
           <CCardBody>
-            <CForm onSubmit={handleSubmit(saveBlog)}>
+            <CForm onSubmit={handleSubmit(saveProduct)}>
               <CRow className="mb-2">
                 <CCol md={6}>
                   <CFormInput
@@ -208,32 +154,7 @@ const News = () => {
                 </CCol>
               </CRow>
 
-              <CRow>
-                {/* <CCol md={6} className="mb-2">
-                  <CFormInput
-                    type="text"
-                    label="Slug"
-                    placeholder="Auto Generate"
-                    {...register('slug')}
-                    onChange={(e) => {
-                      setValue('slug', e.target.value)
-                      setSlugEdited(true)
-                    }}
-                  />
-                  {errors.slug && <small className="text-danger">{errors.slug.message}</small>}
-                </CCol> */}
-                {/* <CCol md={12} className="mb-2">
-                  <CFormInput
-                    type="text"
-                    label="Subtitle"
-                    placeholder="Enter SubTitle"
-                    {...register('subtitle')}
-                  />
-                  {errors.subtitle && (
-                    <small className="text-danger">{errors.subtitle.message}</small>
-                  )}
-                </CCol> */}
-              </CRow>
+              <CRow></CRow>
 
               <CRow>
                 <CCol md={12} className="mb-2">
@@ -266,50 +187,7 @@ const News = () => {
                 </CCol>
               </CRow>
 
-              {/* <CRow className="mb-3">
-                <CCol md={6} className="mb-2">
-                  <CFormSelect
-                    label="Type"
-                    {...register('type')}
-                    value={formDataValues.type}
-                    onChange={(e) => setValue('type', e.target.value)}
-                  >
-                    <option value="">Select Type</option>
-                    <option value="1">Published</option>
-                    <option value="2">Draft</option>
-                  </CFormSelect>
-                  {errors.type && <small className="text-danger">{errors.type.message}</small>}
-                </CCol>
-
-                <CCol md={6} className="mb-2">
-                  <CFormSelect
-                    label="Video Source"
-                    {...register('videoType')}
-                    value={formDataValues.videoType}
-                    onChange={(e) => setValue('videoType', e.target.value)}
-                  >
-                    <option value="">Select Type</option>
-                    <option value="1">YouTube</option>
-                    <option value="2">Self Upload</option>
-                  </CFormSelect>
-                  {errors.videoType && (
-                    <small className="text-danger">{errors.videoType.message}</small>
-                  )}
-                </CCol>
-              </CRow> */}
-
               <CRow>
-                {/* <CCol md={12} className="mb-2">
-                  {formDataValues.videoType === '1' && (
-                    <CFormInput
-                      type="url"
-                      label="YouTube URL"
-                      {...register('youtubeUrl')}
-                      placeholder="Enter YouTube Video URL"
-                    />
-                  )}
-                </CCol> */}
-
                 <CCol md={12} className="mb-2">
                   <div
                     style={{
@@ -346,68 +224,8 @@ const News = () => {
           </CCardBody>
         </CCard>
       </CCol>
-
-      {/* <CCol lg={5}>
-        <CCard className="shadow border-0 rounded-4 text-dark">
-          <CCardHeader className="bg-dark text-white fw-bold px-4 py-3 shadow-sm">
-            <h5 className="mb-0">Live Preview</h5>
-          </CCardHeader>
-          <CCardBody>
-            {formDataValues.title && (
-              <p>
-                <strong>Title:</strong> {formDataValues.title}
-              </p>
-            )}
-            {formDataValues.categories?.length > 0 && (
-              <p>
-                <strong>Categories:</strong>{' '}
-                {categoriesList
-                  .filter((cat) => formDataValues.categories.includes(cat.id))
-                  .map((cat) => cat.name)
-                  .join(', ')}
-              </p>
-            )}
-
-            {formDataValues.videoType === '1' &&
-              formDataValues.youtubeUrl &&
-              (() => {
-                const videoId = getYouTubeId(formDataValues.youtubeUrl)
-                return videoId ? (
-                  <iframe
-                    width="100%"
-                    height="250"
-                    className="rounded mb-3"
-                    src={`https://www.youtube.com/embed/${videoId}`}
-                    title="YouTube Preview"
-                    allowFullScreen
-                  ></iframe>
-                ) : (
-                  <p className="text-danger">Invalid YouTube URL</p>
-                )
-              })()}
-
-            {formDataValues.videoType === '2' && formDataValues.videoFile?.[0] && (
-              <video width="100%" height="auto" className="rounded" controls>
-                <source src={URL.createObjectURL(formDataValues.videoFile[0])} />
-              </video>
-            )}
-
-            {formDataValues.videoType === 'self' && formDataValues.thumbnail?.[0] && (
-              <div className="mt-3">
-                <strong>Preview Image:</strong>
-                <img
-                  src={URL.createObjectURL(formDataValues.thumbnail[0])}
-                  alt="Thumbnail"
-                  className="img-fluid rounded mt-2"
-                  style={{ maxHeight: '150px', objectFit: 'cover' }}
-                />
-              </div>
-            )}
-          </CCardBody>
-        </CCard>
-      </CCol> */}
     </div>
   )
 }
 
-export default News
+export default Product
