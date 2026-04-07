@@ -23,12 +23,18 @@ export const createProduct = async (req, res) => {
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find()
-      .populate("categories", "name slug")
+      .populate("categories", "name") // ✅ removed slug
       .sort({ createdAt: -1 });
 
-    return res.status(200).json({ success: true, data: products });
+    return res.status(200).json({
+      success: true,
+      data: products,
+    });
   } catch (error) {
-    return res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 };
 
@@ -63,25 +69,12 @@ export const getProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   try {
-    const {
-      title,
-      // slug,
-      price,
-      categories,
-      // type,
-      // videoType,
-      // youtubeUrl,
-      content,
-    } = req.body;
+    const { title, price, categories, content } = req.body;
 
     const updateData = {
       title,
-      // slug,
       price,
       categories: JSON.parse(categories),
-      // type,
-      // videoType,
-      // youtubeUrl,
       content: JSON.parse(content),
     };
 

@@ -22,36 +22,14 @@ import setting from '../../../setting.json'
 import secureLocalStorage from 'react-secure-storage'
 import { useNavigate } from 'react-router-dom'
 
-const PublishedNews = () => {
+const ProductList = () => {
   const [newsList, setNewsList] = useState([])
   const navigate = useNavigate()
   const [searchText, setSearchText] = useState('')
   const [blogList, setBlogList] = useState([])
 
-  // const fetchNews = async () => {
-  //   try {
-  //     const token = JSON.parse(secureLocalStorage.getItem("logininfo")).token;
-
-  //     const res = await fetch(setting.api + "/api/news/publishedNews", {
-  //       method: "GET",
-  //       headers: {
-  //         Authorization: "Bearer " + token,
-  //       },
-  //     });
-
-  //     const data = await res.json();
-  //     setNewsList(data.news || []);
-  //   } catch (error) {
-  //     console.error("Error fetching news:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchNews();
-  // }, []);
-
   const getAllProduct = async () => {
-    await fetch(setting.api + '/api/products/getAllProduct', {
+    await fetch(setting.api + '/api/products/getAllProducts', {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -211,4 +189,4 @@ const PublishedNews = () => {
   )
 }
 
-export default PublishedNews
+export default ProductList

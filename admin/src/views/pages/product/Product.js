@@ -110,7 +110,7 @@ const Product = () => {
     const result = await res.json()
     if (result.success === true) {
       reset({})
-      navigate('/PublishedBlog')
+      navigate('/ProductList')
     }
     console.log('API Response:', result)
   }
