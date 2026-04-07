@@ -6,7 +6,7 @@ import express from "express";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
-import blogRoutes from "./routes/productRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 import reportRoutes from "./routes/reportRoutes.js";
 import authRoutes from "./routes/auth.js";
 import planRoutes from "./routes/planRoutes.js";
@@ -71,7 +71,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use("/api/blogs", blogRoutes);
+app.use("/api/products", productRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/plans", planRoutes);
 app.use("/api/customers", customerRoutes);

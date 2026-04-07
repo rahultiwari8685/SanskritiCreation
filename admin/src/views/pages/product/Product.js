@@ -52,7 +52,7 @@ const News = () => {
     defaultValues: {
       title: '',
       // slug: "",
-      subtitle: '',
+      price: '',
       categories: [],
       videoType: '',
       type: '',
@@ -130,30 +130,28 @@ const News = () => {
     const formData = new FormData()
 
     formData.append('title', data.title)
-    formData.append('slug', data.slug)
-    formData.append('subtitle', data.subtitle)
-    formData.append('type', data.type)
-    formData.append('videoType', data.videoType)
+    formData.append('price', data.price)
+    // formData.append('type', data.type)
+    // formData.append('videoType', data.videoType)
 
     // Category list must be JSON string
     formData.append('categories', JSON.stringify(data.categories))
+    formData.append('content', JSON.stringify(content)) // ✔ backend expects JSON
 
     // YouTube
-    if (data.videoType === '1') {
-      formData.append('youtubeUrl', data.youtubeUrl)
-    }
+    // if (data.videoType === '1') {
+    //   formData.append('youtubeUrl', data.youtubeUrl)
+    // }
 
     // File Upload Mode
-    if (data.videoType === '2') {
-      if (data.thumbnail?.[0]) {
-        formData.append('thumbnail', data.thumbnail[0]) // ✔ matches backend
-      }
+    // if (data.videoType === '2') {
+    //   if (data.thumbnail?.[0]) {
+    //     formData.append('thumbnail', data.thumbnail[0]) // ✔ matches backend
+    //   }
 
-      // Content from EditorJS
-      formData.append('content', JSON.stringify(content)) // ✔ backend expects JSON
-    }
+    // Content from EditorJS
 
-    const endpoint = '/api/blogs/saveBlog'
+    const endpoint = '/api/products/saveProduct'
 
     const res = await fetch(setting.api + endpoint, {
       method: 'POST',
@@ -206,7 +204,7 @@ const News = () => {
                       setSlugEdited(false)
                     }}
                   />
-                  {errors.title && <small className="text-danger">{errors.title.message}</small>}
+                  {errors.price && <small className="text-danger">{errors.price.message}</small>}
                 </CCol>
               </CRow>
 
