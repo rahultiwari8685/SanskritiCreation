@@ -2,31 +2,14 @@ import Product from "../models/Product.js";
 
 export const createProduct = async (req, res) => {
   try {
-    const {
-      title,
-      // slug,
-      price,
-      categories,
-      // type,
-      // videoType,
-      // youtubeUrl,
-      content,
-    } = req.body;
-
-    // if (!title || !slug) {
-    //   return res.status(400).json({ message: "Title & slug required" });
-    // }
+    const { title, price, categories, content } = req.body;
 
     const thumbnail = req.file ? req.file.filename : "";
 
     const product = await Product.create({
       title,
-      // slug,
       price,
       categories: categories ? JSON.parse(categories) : [],
-      // type,
-      // videoType,
-      // youtubeUrl,
       content: content ? JSON.parse(content) : "",
       thumbnail,
     });
