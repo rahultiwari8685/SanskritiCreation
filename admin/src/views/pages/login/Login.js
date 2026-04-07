@@ -39,30 +39,30 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(schema) })
 
   const login = (data) => {
-    navigate('/dashboard')
-    // let lg = {
-    //   email: data.email,
-    //   password: data.password,
-    // }
+    // navigate('/dashboard')
+    let lg = {
+      email: data.email,
+      password: data.password,
+    }
 
-    // fetch(setting.api + '/api/auth/login', {
-    //   method: 'post',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(lg),
-    //   mode: 'cors',
-    // })
-    //   .then((response) => response.json())
-    //   .then((dd) => {
-    //     if (dd.result === 'success') {
-    //       secureLocalStorage.setItem('logininfo', JSON.stringify({ ...dd.user, token: dd.token }))
-    //       navigate('/dashboard')
-    //     } else {
-    //       alert(dd.message || 'Login failed')
-    //     }
-    //   })
-    //   .catch((error) => console.error(error))
+    fetch(setting.api + '/api/auth/login', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(lg),
+      mode: 'cors',
+    })
+      .then((response) => response.json())
+      .then((dd) => {
+        if (dd.result === 'success') {
+          secureLocalStorage.setItem('logininfo', JSON.stringify({ ...dd.user, token: dd.token }))
+          navigate('/dashboard')
+        } else {
+          alert(dd.message || 'Login failed')
+        }
+      })
+      .catch((error) => console.error(error))
   }
 
   return (
