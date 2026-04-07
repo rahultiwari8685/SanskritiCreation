@@ -34,7 +34,11 @@ app.use(limiter);
 
 app.use(
   cors({
-    origin: ["*", "https://igistrategy.com", "https://admin.igistrategy.com"],
+    origin: [
+      "*",
+      "https://sanskritisutracreations.com",
+      "https://admin.sanskritisutracreations.com",
+    ],
     credentials: true,
   }),
 );
