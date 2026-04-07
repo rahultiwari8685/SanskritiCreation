@@ -42,16 +42,16 @@ app.use(
   }),
 );
 
-app.options(
-  "*",
-  cors({
-    origin: [
-      "https://sanskritisutracreations.com",
-      "https://admin.sanskritisutracreations.com",
-    ],
-    credentials: true,
-  }),
-);
+// app.options(
+//   "*",
+//   cors({
+//     origin: [
+//       "https://sanskritisutracreations.com",
+//       "https://admin.sanskritisutracreations.com",
+//     ],
+//     credentials: true,
+//   }),
+// );
 
 app.use(express.json({ limit: "1mb" }));
 
