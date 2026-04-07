@@ -1,120 +1,74 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { CCard, CCardBody, CCol, CRow } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import setting from '../../setting.json'
-import {
-  cilPeople,
-  cilUser,
-  cilUserX,
-  cilMoney,
-  cilBriefcase,
-  cilLibrary,
-  cilSchool,
-  cilNewspaper,
-  cilCommentBubble,
-} from '@coreui/icons'
+import { cilLibrary, cilSchool, cilNewspaper, cilCommentBubble } from '@coreui/icons'
 import secureLocalStorage from 'react-secure-storage'
 
-const userRole = JSON.parse(secureLocalStorage.getItem('logininfo')).role
+// ✅ Safe role fetch
+const loginInfo = secureLocalStorage.getItem('logininfo')
+const userRole = loginInfo ? JSON.parse(loginInfo).role : '1'
 
 const Dashboard = () => {
-  const [statsAdmin1, setStatsAdmin] = useState({})
-  const [statsContent1, setStatsContent] = useState({})
-  const [stastOperator1, setStatsOperator] = useState({})
-
-  const getDashboardWidgetData = async () => {
-    const res = await fetch(setting.api + '/api/getDashboardWidgetData', {
-      headers: {
-        // 'Content-Type': 'application/json',
-        // Authorization:
-        //   'Bearer ' + JSON.parse(secureLocalStorage.getItem('logininfo')).token,
-      },
-    })
-    const json = await res.json()
-    if (json.result === 'false') {
-      secureLocalStorage.clear()
-      navigate('/login')
-    } else {
-      setStatsAdmin(json.data)
-      setStatsContent(json.data)
-      setStatsOperator(json.data)
-    }
-  }
-
-  useEffect(() => {
-    getDashboardWidgetData()
-  }, [])
-
+  // ✅ STATIC DATA (No API)
   const statsAdmin = [
-    // {
-    //   title: 'Total Service',
-    //   count: statsAdmin1.total_service,
-    //   icon: cilBriefcase,
-    //   label: 'Service',
-    //   color: '#dc3545',
-    // },
     {
       title: 'Total University',
-      count: statsAdmin1.university,
+      count: 12,
       icon: cilSchool,
       label: 'University',
       color: '#198754',
     },
     {
       title: 'Total Course',
-      count: statsAdmin1.courses,
+      count: 30,
       icon: cilLibrary,
       label: 'Course',
       color: '#fd7e14',
     },
     {
       title: 'Total Blog',
-      count: statsAdmin1.blogs,
+      count: 18,
       icon: cilNewspaper,
       label: 'Blog',
       color: '#0d6efd',
     },
   ]
+
   const statsContent = [
     {
       title: 'Total Blog',
-      count: statsContent1.blogs,
+      count: 18,
       icon: cilNewspaper,
       label: 'Blog',
       color: '#0d6efd',
     },
     {
       title: 'Total Query',
-      count: statsContent1.query,
+      count: 7,
       icon: cilCommentBubble,
       label: 'Query',
       color: '#fd7e14',
     },
   ]
+
   const statsOperator = [
-    // {
-    //   title: 'Total Service',
-    //   count: stastOperator1.total_service,
-    //   icon: cilBriefcase,
-    //   label: 'Service',
-    //   color: '#dc3545',
-    // },
     {
       title: 'Total University',
-      count: stastOperator1.university,
+      count: 10,
       icon: cilSchool,
       label: 'University',
       color: '#198754',
     },
     {
       title: 'Total Course',
-      count: stastOperator1.courses,
+      count: 25,
       icon: cilLibrary,
       label: 'Course',
       color: '#fd7e14',
     },
   ]
 
+  // ✅ Role-based data
   const data =
     userRole === '1'
       ? statsAdmin
@@ -127,6 +81,7 @@ const Dashboard = () => {
   return (
     <div className="p-4">
       <h3 className="mb-4">Dashboard</h3>
+
       <CRow className="g-4">
         {data.map((item, index) => (
           <CCol md={6} lg={3} sm={12} key={index}>
@@ -138,10 +93,13 @@ const Dashboard = () => {
               }}
             >
               <CCardBody className="d-flex justify-content-between align-items-center py-4">
+                {/* LEFT */}
                 <div>
                   <div style={{ fontSize: '1rem', opacity: 0.9 }}>{item.title}</div>
                   <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{item.count}</div>
                 </div>
+
+                {/* RIGHT */}
                 <div className="text-center">
                   <CIcon icon={item.icon} size="xxl" />
                   <div style={{ fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.label}</div>
