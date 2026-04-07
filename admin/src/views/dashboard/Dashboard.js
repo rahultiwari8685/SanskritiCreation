@@ -41,9 +41,9 @@ const Dashboard = () => {
   //   }
   // }
 
-  useEffect(() => {
-    getDashboardWidgetData()
-  }, [])
+  // useEffect(() => {
+  //   getDashboardWidgetData()
+  // }, [])
 
   const statsAdmin = [
     // {
