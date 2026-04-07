@@ -11,16 +11,11 @@ export const createCategory = async (req, res) => {
         .json({ success: false, message: "Name is required" });
     }
 
-    // const slug = slugify(name);
-
     const bannerImage = req.file ? req.file.filename : "";
 
     const category = await Category.create({
       name,
-      // slug,
       parentCategory: parentCategory || null,
-      // metaTitle,
-      // metaDescription,
       showInMenu,
       bannerImage,
     });

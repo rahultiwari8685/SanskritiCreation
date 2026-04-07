@@ -142,11 +142,11 @@ const Category = () => {
     console.log(ans)
 
     if (ans == true) {
-      deleteUser(id)
+      deleteCategory(id)
     }
   }
 
-  const deleteUser = async (id) => {
+  const deleteCategory = async (id) => {
     try {
       const token = JSON.parse(secureLocalStorage.getItem('logininfo'))?.token
 
@@ -162,11 +162,11 @@ const Category = () => {
       if (!response.ok) {
         console.error('Delete failed:', response.status)
       } else {
-        console.log('User deleted:', await response.json())
+        console.log('Category deleted:', await response.json())
         getAllCategory()
       }
     } catch (err) {
-      console.error('Error deleting user:', err)
+      console.error('Error deleting category:', err)
     }
   }
 
@@ -212,7 +212,7 @@ const Category = () => {
               {paginatedItems.map((cat, index) => {
                 const actualIndex = (currentPage - 1) * itemsPerPage + index
                 return (
-                  <CTableRow key={cat.id}>
+                  <CTableRow key={cat._id}>
                     <CTableDataCell>{actualIndex + 1}</CTableDataCell>
                     <CTableDataCell>{cat.name}</CTableDataCell>
                     <CTableDataCell>{cat?.parentCategory?.name || '—'}</CTableDataCell>
