@@ -100,18 +100,14 @@ const Category = () => {
 
     if (editingCategory) {
       endpoint = '/api/categories/updateCategory'
-      formData.append('id', editingCategory.id)
+
+      formData.append('_id', editingCategory._id)
     }
 
     try {
       const res = await fetch(setting.api + endpoint, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Authorization:
-          //     "Bearer " +
-          //     JSON.parse(secureLocalStorage.getItem("logininfo")).token,
-        },
+
         body: formData,
       })
 
