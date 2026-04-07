@@ -1,156 +1,93 @@
-import React, { useState, useEffect } from 'react'
-import { CCard, CCardBody, CCol, CRow } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import setting from '../../setting.json'
-import {
-  cilPeople,
-  cilUser,
-  cilUserX,
-  cilMoney,
-  cilBriefcase,
-  cilLibrary,
-  cilSchool,
-  cilNewspaper,
-  cilCommentBubble,
-} from '@coreui/icons'
-import secureLocalStorage from 'react-secure-storage'
-
-const userRole = JSON.parse(secureLocalStorage.getItem('logininfo')).role
+import React from 'react'
+import { Users, Package, ShoppingCart, MessageCircle } from 'lucide-react'
 
 const Dashboard = () => {
-  const [statsAdmin1, setStatsAdmin] = useState({})
-  const [statsContent1, setStatsContent] = useState({})
-  const [stastOperator1, setStatsOperator] = useState({})
-
-  // const getDashboardWidgetData = async () => {
-  //   const res = await fetch(setting.api + '/api/getDashboardWidgetData', {
-  //     headers: {
-  //       // 'Content-Type': 'application/json',
-  //       // Authorization:
-  //       //   'Bearer ' + JSON.parse(secureLocalStorage.getItem('logininfo')).token,
-  //     },
-  //   })
-  //   const json = await res.json()
-  //   if (json.result === 'false') {
-  //     secureLocalStorage.clear()
-  //     navigate('/login')
-  //   } else {
-  //     setStatsAdmin(json.data)
-  //     setStatsContent(json.data)
-  //     setStatsOperator(json.data)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getDashboardWidgetData()
-  // }, [])
+  const userRole = '1' // static for now
 
   const statsAdmin = [
-    // {
-    //   title: 'Total Service',
-    //   count: statsAdmin1.total_service,
-    //   icon: cilBriefcase,
-    //   label: 'Service',
-    //   color: '#dc3545',
-    // },
     {
-      title: 'Total Service',
+      title: 'Total Services',
       count: 16,
-      icon: cilSchool,
-      label: 'University',
-      color: '#198754',
+      icon: Users,
+      gradient: 'from-green-400 to-green-600',
     },
     {
-      title: 'Total Product',
+      title: 'Total Products',
       count: 25,
-      icon: cilLibrary,
-      label: 'Course',
-      color: '#fd7e14',
+      icon: Package,
+      gradient: 'from-orange-400 to-orange-600',
     },
     {
       title: 'Total Orders',
       count: 10,
-      icon: cilNewspaper,
-      label: 'Blog',
-      color: '#0d6efd',
+      icon: ShoppingCart,
+      gradient: 'from-blue-400 to-blue-600',
     },
   ]
+
   const statsContent = [
     {
       title: 'Total Orders',
       count: 10,
-      icon: cilNewspaper,
-      label: 'Blog',
-      color: '#0d6efd',
+      icon: ShoppingCart,
+      gradient: 'from-blue-400 to-blue-600',
     },
     {
-      title: 'Total Query',
+      title: 'Total Queries',
       count: 5,
-      icon: cilCommentBubble,
-      label: 'Query',
-      color: '#fd7e14',
-    },
-  ]
-  const statsOperator = [
-    // {
-    //   title: 'Total Service',
-    //   count: stastOperator1.total_service,
-    //   icon: cilBriefcase,
-    //   label: 'Service',
-    //   color: '#dc3545',
-    // },
-    {
-      title: 'Total Service',
-      count: 20,
-      icon: cilSchool,
-      label: 'University',
-      color: '#198754',
-    },
-    {
-      title: 'Total Product',
-      count: 25,
-      icon: cilLibrary,
-      label: 'Course',
-      color: '#fd7e14',
+      icon: MessageCircle,
+      gradient: 'from-purple-400 to-purple-600',
     },
   ]
 
-  const data =
-    userRole === '1'
-      ? statsAdmin
-      : userRole === '2'
-        ? statsContent
-        : userRole === '3'
-          ? statsOperator
-          : []
+  const statsOperator = [
+    {
+      title: 'Total Services',
+      count: 20,
+      icon: Users,
+      gradient: 'from-green-400 to-green-600',
+    },
+    {
+      title: 'Total Products',
+      count: 25,
+      icon: Package,
+      gradient: 'from-orange-400 to-orange-600',
+    },
+  ]
+
+  const data = userRole === '1' ? statsAdmin : userRole === '2' ? statsContent : statsOperator
 
   return (
-    <div className="p-4">
-      <h3 className="mb-4">Dashboard</h3>
-      <CRow className="g-4">
-        {data.map((item, index) => (
-          <CCol md={6} lg={3} sm={12} key={index}>
-            <CCard
-              className="text-white shadow"
-              style={{
-                backgroundColor: item.color,
-                borderRadius: '1rem',
-              }}
+    <div className="p-6 bg-gray-100 min-h-screen">
+      {/* Header */}
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Dashboard Overview</h2>
+
+      {/* Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {data.map((item, index) => {
+          const Icon = item.icon
+
+          return (
+            <div
+              key={index}
+              className={`rounded-2xl p-6 text-white shadow-lg bg-gradient-to-r ${item.gradient} hover:scale-105 transition`}
             >
-              <CCardBody className="d-flex justify-content-between align-items-center py-4">
+              <div className="flex justify-between items-center">
+                {/* Text */}
                 <div>
-                  <div style={{ fontSize: '1rem', opacity: 0.9 }}>{item.title}</div>
-                  <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{item.count}</div>
+                  <p className="text-sm opacity-80">{item.title}</p>
+                  <h3 className="text-3xl font-bold mt-1">{item.count}</h3>
                 </div>
-                <div className="text-center">
-                  <CIcon icon={item.icon} size="xxl" />
-                  <div style={{ fontSize: '0.75rem', marginTop: '0.25rem' }}>{item.label}</div>
+
+                {/* Icon */}
+                <div className="bg-white/20 p-3 rounded-full">
+                  <Icon size={28} />
                 </div>
-              </CCardBody>
-            </CCard>
-          </CCol>
-        ))}
-      </CRow>
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
