@@ -1,0 +1,273 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "flaticon_logistics";
+  src: url("./flaticon_logistics.woff2?646180958cb6f5edc8017ae50c5cfdf7") format("woff2"), url("./flaticon_logistics.woff?646180958cb6f5edc8017ae50c5cfdf7") format("woff"), url("./flaticon_logistics.eot?646180958cb6f5edc8017ae50c5cfdf7#iefix") format("embedded-opentype"), url("./flaticon_logistics.ttf?646180958cb6f5edc8017ae50c5cfdf7") format("truetype"), url("./flaticon_logistics.svg?646180958cb6f5edc8017ae50c5cfdf7#flaticon_logistics") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+  font-family: flaticon_logistics !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-call:before {
+  content: "";
+}
+
+.flaticon-road-with-broken-line:before {
+  content: "";
+}
+
+.flaticon-fast-delivery:before {
+  content: "";
+}
+
+.flaticon-boat-with-containers:before {
+  content: "";
+}
+
+.flaticon-logistics:before {
+  content: "";
+}
+
+.flaticon-fast-delivery-1:before {
+  content: "";
+}
+
+.flaticon-locations:before {
+  content: "";
+}
+
+.flaticon-logistics-1:before {
+  content: "";
+}
+
+.flaticon-customer-support:before {
+  content: "";
+}
+
+.flaticon-play-button:before {
+  content: "";
+}
+
+.flaticon-play-button-1:before {
+  content: "";
+}
+
+.flaticon-order:before {
+  content: "";
+}
+
+.flaticon-credit-card:before {
+  content: "";
+}
+
+.flaticon-boxes:before {
+  content: "";
+}
+
+.flaticon-product-return:before {
+  content: "";
+}
+
+.flaticon-product-return-1:before {
+  content: "";
+}
+
+.flaticon-truck:before {
+  content: "";
+}
+
+.flaticon-database:before {
+  content: "";
+}
+
+.flaticon-distribution-center:before {
+  content: "";
+}
+
+.flaticon-customer-support-1:before {
+  content: "";
+}
+
+.flaticon-truck-1:before {
+  content: "";
+}
+
+.flaticon-delivery-box:before {
+  content: "";
+}
+
+.flaticon-employee:before {
+  content: "";
+}
+
+.flaticon-worker:before {
+  content: "";
+}
+
+.flaticon-warehouse:before {
+  content: "";
+}
+
+.flaticon-air-plane:before {
+  content: "";
+}
+
+.flaticon-right:before {
+  content: "";
+}
+
+.flaticon-delivery:before {
+  content: "";
+}
+
+.flaticon-tracking:before {
+  content: "";
+}
+
+.flaticon-warehouse-1:before {
+  content: "";
+}
+
+.flaticon-warehouse-2:before {
+  content: "";
+}
+
+.flaticon-email:before {
+  content: "";
+}
+
+.flaticon-down:before {
+  content: "";
+}
+
+.flaticon-search:before {
+  content: "";
+}
+
+.flaticon-next:before {
+  content: "";
+}
+
+.flaticon-right-arrow:before {
+  content: "";
+}
+
+.flaticon-left-arrow:before {
+  content: "";
+}
+
+.flaticon-check:before {
+  content: "";
+}
+
+.flaticon-nanotechnology:before {
+  content: "";
+}
+
+.flaticon-shopping-cart:before {
+  content: "";
+}
+
+.flaticon-globe:before {
+  content: "";
+}
+
+.flaticon-mark:before {
+  content: "";
+}
+
+.flaticon-star:before {
+  content: "";
+}
+
+.flaticon-circuit:before {
+  content: "";
+}
+
+.flaticon-profile:before {
+  content: "";
+}
+
+.flaticon-comments:before {
+  content: "";
+}
+
+.flaticon-right-arrow-1:before {
+  content: "";
+}
+
+.flaticon-phone-call:before {
+  content: "";
+}
+
+.flaticon-play-button-arrowhead:before {
+  content: "";
+}
+
+.flaticon-clock:before {
+  content: "";
+}
+
+.flaticon-calendar:before {
+  content: "";
+}
+
+.flaticon-quote:before {
+  content: "";
+}
+
+.flaticon-back:before {
+  content: "";
+}
+
+.flaticon-location:before {
+  content: "";
+}
+
+.flaticon-location-1:before {
+  content: "";
+}
+
+.flaticon-document:before {
+  content: "";
+}
+
+.flaticon-edit:before {
+  content: "";
+}
+
+.flaticon-user:before {
+  content: "";
+}
+
+.flaticon-send:before {
+  content: "";
+}
+
+.flaticon-arrowhead-up:before {
+  content: "";
+}
+
+.flaticon-facebook-app-symbol:before {
+  content: "";
+}
+
+.flaticon-vimeo:before {
+  content: "";
+}
+
+.flaticon-linkedin-big-logo:before {
+  content: "";
+}
+
+.flaticon-twitter:before {
+  content: "";
+}
+/*# sourceMappingURL=flaticon_logistics.css.map */

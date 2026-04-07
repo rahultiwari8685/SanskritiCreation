@@ -1,0 +1,281 @@
+$flaticon_logistics-font: "flaticon_logistics";
+
+@font-face {
+    font-family: $flaticon_logistics-font;
+    src: url("./flaticon_logistics.woff2?646180958cb6f5edc8017ae50c5cfdf7") format("woff2"),
+url("./flaticon_logistics.woff?646180958cb6f5edc8017ae50c5cfdf7") format("woff"),
+url("./flaticon_logistics.eot?646180958cb6f5edc8017ae50c5cfdf7#iefix") format("embedded-opentype"),
+url("./flaticon_logistics.ttf?646180958cb6f5edc8017ae50c5cfdf7") format("truetype"),
+url("./flaticon_logistics.svg?646180958cb6f5edc8017ae50c5cfdf7#flaticon_logistics") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_logistics !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon_logistics-map: (
+    "call": "\f101",
+    "road-with-broken-line": "\f102",
+    "fast-delivery": "\f103",
+    "boat-with-containers": "\f104",
+    "logistics": "\f105",
+    "fast-delivery-1": "\f106",
+    "locations": "\f107",
+    "logistics-1": "\f108",
+    "customer-support": "\f109",
+    "play-button": "\f10a",
+    "play-button-1": "\f10b",
+    "order": "\f10c",
+    "credit-card": "\f10d",
+    "boxes": "\f10e",
+    "product-return": "\f10f",
+    "product-return-1": "\f110",
+    "truck": "\f111",
+    "database": "\f112",
+    "distribution-center": "\f113",
+    "customer-support-1": "\f114",
+    "truck-1": "\f115",
+    "delivery-box": "\f116",
+    "employee": "\f117",
+    "worker": "\f118",
+    "warehouse": "\f119",
+    "air-plane": "\f11a",
+    "right": "\f11b",
+    "delivery": "\f11c",
+    "tracking": "\f11d",
+    "warehouse-1": "\f11e",
+    "warehouse-2": "\f11f",
+    "email": "\f120",
+    "down": "\f121",
+    "search": "\f122",
+    "next": "\f123",
+    "right-arrow": "\f124",
+    "left-arrow": "\f125",
+    "check": "\f126",
+    "nanotechnology": "\f127",
+    "shopping-cart": "\f128",
+    "globe": "\f129",
+    "mark": "\f12a",
+    "star": "\f12b",
+    "circuit": "\f12c",
+    "profile": "\f12d",
+    "comments": "\f12e",
+    "right-arrow-1": "\f12f",
+    "phone-call": "\f130",
+    "play-button-arrowhead": "\f131",
+    "clock": "\f132",
+    "calendar": "\f133",
+    "quote": "\f134",
+    "back": "\f135",
+    "location": "\f136",
+    "location-1": "\f137",
+    "document": "\f138",
+    "edit": "\f139",
+    "user": "\f13a",
+    "send": "\f13b",
+    "arrowhead-up": "\f13c",
+    "facebook-app-symbol": "\f13d",
+    "vimeo": "\f13e",
+    "linkedin-big-logo": "\f13f",
+    "twitter": "\f140",
+);
+
+.flaticon-call:before {
+    content: map-get($flaticon_logistics-map, "call");
+}
+.flaticon-road-with-broken-line:before {
+    content: map-get($flaticon_logistics-map, "road-with-broken-line");
+}
+.flaticon-fast-delivery:before {
+    content: map-get($flaticon_logistics-map, "fast-delivery");
+}
+.flaticon-boat-with-containers:before {
+    content: map-get($flaticon_logistics-map, "boat-with-containers");
+}
+.flaticon-logistics:before {
+    content: map-get($flaticon_logistics-map, "logistics");
+}
+.flaticon-fast-delivery-1:before {
+    content: map-get($flaticon_logistics-map, "fast-delivery-1");
+}
+.flaticon-locations:before {
+    content: map-get($flaticon_logistics-map, "locations");
+}
+.flaticon-logistics-1:before {
+    content: map-get($flaticon_logistics-map, "logistics-1");
+}
+.flaticon-customer-support:before {
+    content: map-get($flaticon_logistics-map, "customer-support");
+}
+.flaticon-play-button:before {
+    content: map-get($flaticon_logistics-map, "play-button");
+}
+.flaticon-play-button-1:before {
+    content: map-get($flaticon_logistics-map, "play-button-1");
+}
+.flaticon-order:before {
+    content: map-get($flaticon_logistics-map, "order");
+}
+.flaticon-credit-card:before {
+    content: map-get($flaticon_logistics-map, "credit-card");
+}
+.flaticon-boxes:before {
+    content: map-get($flaticon_logistics-map, "boxes");
+}
+.flaticon-product-return:before {
+    content: map-get($flaticon_logistics-map, "product-return");
+}
+.flaticon-product-return-1:before {
+    content: map-get($flaticon_logistics-map, "product-return-1");
+}
+.flaticon-truck:before {
+    content: map-get($flaticon_logistics-map, "truck");
+}
+.flaticon-database:before {
+    content: map-get($flaticon_logistics-map, "database");
+}
+.flaticon-distribution-center:before {
+    content: map-get($flaticon_logistics-map, "distribution-center");
+}
+.flaticon-customer-support-1:before {
+    content: map-get($flaticon_logistics-map, "customer-support-1");
+}
+.flaticon-truck-1:before {
+    content: map-get($flaticon_logistics-map, "truck-1");
+}
+.flaticon-delivery-box:before {
+    content: map-get($flaticon_logistics-map, "delivery-box");
+}
+.flaticon-employee:before {
+    content: map-get($flaticon_logistics-map, "employee");
+}
+.flaticon-worker:before {
+    content: map-get($flaticon_logistics-map, "worker");
+}
+.flaticon-warehouse:before {
+    content: map-get($flaticon_logistics-map, "warehouse");
+}
+.flaticon-air-plane:before {
+    content: map-get($flaticon_logistics-map, "air-plane");
+}
+.flaticon-right:before {
+    content: map-get($flaticon_logistics-map, "right");
+}
+.flaticon-delivery:before {
+    content: map-get($flaticon_logistics-map, "delivery");
+}
+.flaticon-tracking:before {
+    content: map-get($flaticon_logistics-map, "tracking");
+}
+.flaticon-warehouse-1:before {
+    content: map-get($flaticon_logistics-map, "warehouse-1");
+}
+.flaticon-warehouse-2:before {
+    content: map-get($flaticon_logistics-map, "warehouse-2");
+}
+.flaticon-email:before {
+    content: map-get($flaticon_logistics-map, "email");
+}
+.flaticon-down:before {
+    content: map-get($flaticon_logistics-map, "down");
+}
+.flaticon-search:before {
+    content: map-get($flaticon_logistics-map, "search");
+}
+.flaticon-next:before {
+    content: map-get($flaticon_logistics-map, "next");
+}
+.flaticon-right-arrow:before {
+    content: map-get($flaticon_logistics-map, "right-arrow");
+}
+.flaticon-left-arrow:before {
+    content: map-get($flaticon_logistics-map, "left-arrow");
+}
+.flaticon-check:before {
+    content: map-get($flaticon_logistics-map, "check");
+}
+.flaticon-nanotechnology:before {
+    content: map-get($flaticon_logistics-map, "nanotechnology");
+}
+.flaticon-shopping-cart:before {
+    content: map-get($flaticon_logistics-map, "shopping-cart");
+}
+.flaticon-globe:before {
+    content: map-get($flaticon_logistics-map, "globe");
+}
+.flaticon-mark:before {
+    content: map-get($flaticon_logistics-map, "mark");
+}
+.flaticon-star:before {
+    content: map-get($flaticon_logistics-map, "star");
+}
+.flaticon-circuit:before {
+    content: map-get($flaticon_logistics-map, "circuit");
+}
+.flaticon-profile:before {
+    content: map-get($flaticon_logistics-map, "profile");
+}
+.flaticon-comments:before {
+    content: map-get($flaticon_logistics-map, "comments");
+}
+.flaticon-right-arrow-1:before {
+    content: map-get($flaticon_logistics-map, "right-arrow-1");
+}
+.flaticon-phone-call:before {
+    content: map-get($flaticon_logistics-map, "phone-call");
+}
+.flaticon-play-button-arrowhead:before {
+    content: map-get($flaticon_logistics-map, "play-button-arrowhead");
+}
+.flaticon-clock:before {
+    content: map-get($flaticon_logistics-map, "clock");
+}
+.flaticon-calendar:before {
+    content: map-get($flaticon_logistics-map, "calendar");
+}
+.flaticon-quote:before {
+    content: map-get($flaticon_logistics-map, "quote");
+}
+.flaticon-back:before {
+    content: map-get($flaticon_logistics-map, "back");
+}
+.flaticon-location:before {
+    content: map-get($flaticon_logistics-map, "location");
+}
+.flaticon-location-1:before {
+    content: map-get($flaticon_logistics-map, "location-1");
+}
+.flaticon-document:before {
+    content: map-get($flaticon_logistics-map, "document");
+}
+.flaticon-edit:before {
+    content: map-get($flaticon_logistics-map, "edit");
+}
+.flaticon-user:before {
+    content: map-get($flaticon_logistics-map, "user");
+}
+.flaticon-send:before {
+    content: map-get($flaticon_logistics-map, "send");
+}
+.flaticon-arrowhead-up:before {
+    content: map-get($flaticon_logistics-map, "arrowhead-up");
+}
+.flaticon-facebook-app-symbol:before {
+    content: map-get($flaticon_logistics-map, "facebook-app-symbol");
+}
+.flaticon-vimeo:before {
+    content: map-get($flaticon_logistics-map, "vimeo");
+}
+.flaticon-linkedin-big-logo:before {
+    content: map-get($flaticon_logistics-map, "linkedin-big-logo");
+}
+.flaticon-twitter:before {
+    content: map-get($flaticon_logistics-map, "twitter");
+}
