@@ -2,44 +2,29 @@ import React from 'react'
 import { CCard, CCardBody, CCol, CRow } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLibrary, cilSchool, cilNewspaper, cilCommentBubble } from '@coreui/icons'
-import secureLocalStorage from 'react-secure-storage'
-
-// ✅ Safe role fetch
-const loginInfo = secureLocalStorage.getItem('logininfo')
-const userRole = loginInfo ? JSON.parse(loginInfo).role : '1'
 
 const Dashboard = () => {
-  // ✅ STATIC DATA (No API)
-  const statsAdmin = [
+  // ✅ STATIC DATA ONLY
+  const stats = [
     {
-      title: 'Total University',
+      title: 'Total Services',
       count: 12,
       icon: cilSchool,
-      label: 'University',
+      label: 'Services',
       color: '#198754',
     },
     {
-      title: 'Total Course',
+      title: 'Total Orders',
       count: 30,
       icon: cilLibrary,
-      label: 'Course',
+      label: 'Orders',
       color: '#fd7e14',
     },
     {
-      title: 'Total Blog',
+      title: 'Total Products',
       count: 18,
       icon: cilNewspaper,
-      label: 'Blog',
-      color: '#0d6efd',
-    },
-  ]
-
-  const statsContent = [
-    {
-      title: 'Total Blog',
-      count: 18,
-      icon: cilNewspaper,
-      label: 'Blog',
+      label: 'Products',
       color: '#0d6efd',
     },
     {
@@ -47,43 +32,16 @@ const Dashboard = () => {
       count: 7,
       icon: cilCommentBubble,
       label: 'Query',
-      color: '#fd7e14',
+      color: '#6f42c1',
     },
   ]
-
-  const statsOperator = [
-    {
-      title: 'Total University',
-      count: 10,
-      icon: cilSchool,
-      label: 'University',
-      color: '#198754',
-    },
-    {
-      title: 'Total Course',
-      count: 25,
-      icon: cilLibrary,
-      label: 'Course',
-      color: '#fd7e14',
-    },
-  ]
-
-  // ✅ Role-based data
-  const data =
-    userRole === '1'
-      ? statsAdmin
-      : userRole === '2'
-        ? statsContent
-        : userRole === '3'
-          ? statsOperator
-          : []
 
   return (
     <div className="p-4">
       <h3 className="mb-4">Dashboard</h3>
 
       <CRow className="g-4">
-        {data.map((item, index) => (
+        {stats.map((item, index) => (
           <CCol md={6} lg={3} sm={12} key={index}>
             <CCard
               className="text-white shadow"
