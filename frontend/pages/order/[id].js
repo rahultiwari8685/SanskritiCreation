@@ -27,10 +27,7 @@ const OrderPage = () => {
     <Fragment>
       <NavbarS2 hclass={"header-section-2 style-two"} />
 
-      <PageTitle
-        pageTitle={product?.title || "Book Order"}
-        pagesub={"Checkout"}
-      />
+      <PageTitle pageTitle={product?.title || "Book Order"} pagesub={"Order"} />
 
       <OrderSection productId={id} product={product} />
 
