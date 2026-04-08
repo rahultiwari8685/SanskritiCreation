@@ -90,11 +90,7 @@ const ProductSectionS4 = ({ addToCartProduct }) => {
                   {/* IMAGE */}
                   <div className="product-image">
                     <img
-                      src={
-                        product.thumbnail
-                          ? `${API}/uploads/${product.thumbnail}`
-                          : "/default.png"
-                      }
+                      src={`https://api.sanskritisutracreations.com/uploads/images/${product.thumbnail}`}
                       alt="product"
                     />
 
