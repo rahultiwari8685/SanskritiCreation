@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import ShopSidebar from "./ShopSidebar";
 
 const ShopProduct = ({ products = [], categories = [] }) => {
   const ClickHandler = () => {
