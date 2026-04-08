@@ -41,7 +41,7 @@ const HeaderS3 = (props) => {
 
   return (
     <header className={props.hclass}>
-      <HeaderTopbarS3 />
+      {/* <HeaderTopbarS3 /> */}
       <div
         id="header-sticky"
         className={isSticky ? "header-1 style-2 sticky" : "header-1 style-2"}

@@ -94,13 +94,13 @@ const ProductSectionS4 = ({ addToCartProduct }) => {
                       alt="product"
                     />
 
-                    <ul className="product-icon">
+                    {/* <ul className="product-icon">
                       <li>
                         <button onClick={() => addToCartProduct(product)}>
                           👁
                         </button>
                       </li>
-                    </ul>
+                    </ul> */}
                   </div>
 
                   {/* CONTENT */}
@@ -120,7 +120,9 @@ const ProductSectionS4 = ({ addToCartProduct }) => {
 
                     {/* VIEW BUTTON */}
                     <div className="mt-2">
-                      <Link href={`/product/${product._id}`}>View Details</Link>
+                      <Link href={`/shop-details/${product._id}`}>
+                        View Details
+                      </Link>
                     </div>
                   </div>
                 </div>
