@@ -32,25 +32,25 @@ const HomePage3 = ({ addToCart }) => {
     <Fragment>
       <NavbarS3 hclass={"header-section"} />
       <Hero3 />
-      <BrandSectionS2 />
-      <ProductSectionS5 products={products} />
-      <About3 />
-      <MarqueeSectionS4 />
-      <ServiceSectionS3 />
-      <ShopBannerSectionS2 />
+      {/* <BrandSectionS2 /> */}
+      {/* <ProductSectionS5 products={products} /> */}
+      {/* <About3 /> */}
+      {/* <MarqueeSectionS4 /> */}
+      {/* <ServiceSectionS3 /> */}
+      {/* <ShopBannerSectionS2 /> */}
       <ProcessSectionS2 />
-      <ProjectSectionS3 />
+      {/* <ProjectSectionS3 /> */}
       <ProductSectionS4
         addToCartProduct={addToCartProduct}
         products={products}
       />
-      <FeatureSectionS2 />
+      {/* <FeatureSectionS2 /> */}
       <TestimonialSectionS3 />
-      <BlogSectionS3
+      {/* <BlogSectionS3
         hclass={"blog-section-3 section-padding"}
         SubClass="blog-wrapper"
       />
-      <CtaSectionS2 />
+      <CtaSectionS2 /> */}
       <FooterS3 />
       <CursorMaus />
     </Fragment>

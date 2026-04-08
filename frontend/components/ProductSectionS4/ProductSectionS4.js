@@ -1,259 +1,142 @@
-import React, { useEffect, useState } from 'react';
-import ProdactShape from '/public/images/feature-product/stickers.png'
-import Link from 'next/link';
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
+const ProductSectionS4 = ({ addToCartProduct }) => {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [activeTab, setActiveTab] = useState("all");
 
+  // const API = process.env.NEXT_PUBLIC_API_URL;
+  const API = "https://api.sanskritisutracreations.com";
 
-const ProductSectionS4 = ({ products, addToCartProduct }) => {
-
-    const ClickHandler = () => {
-        window.scrollTo(10, 0);
+  // ✅ GET PRODUCTS
+  const getProducts = async () => {
+    try {
+      const res = await fetch(`${API}/api/products/getAllProducts`);
+      const data = await res.json();
+      if (data.success) {
+        setProducts(data.data);
+      }
+    } catch (err) {
+      console.error("Product Error:", err);
     }
+  };
 
-    const [activeTab, setActiveTab] = useState('Tab2');
-    const openTab = (TabName) => {
-        setActiveTab(TabName);
+  // ✅ GET CATEGORIES
+  const getCategories = async () => {
+    try {
+      const res = await fetch(`${API}/api/categories/getAllCategory`);
+      const data = await res.json();
+      if (data.success) {
+        setCategories(data.data);
+      }
+    } catch (err) {
+      console.error("Category Error:", err);
     }
-    useEffect(() => {
-        openTab('Tab2');
-    }, []);
+  };
 
-    return (
+  useEffect(() => {
+    getProducts();
+    getCategories();
+  }, []);
 
-        <section className="feature-product-section-3 fix section-padding">
-            <div className="right-shape">
-                <img src={ProdactShape} alt="img" />
-            </div>
-            <div className="container">
-                <div className="section-title-area">
-                    <div className="section-title">
-                        <h6 className="bg-4">Digital printing Service</h6>
-                        <h2>Featured Products</h2>
+  // ✅ FILTER PRODUCTS BY CATEGORY
+  const filteredProducts =
+    activeTab === "all"
+      ? products
+      : products.filter((p) => p.categories?.some((c) => c._id === activeTab));
+
+  return (
+    <section className="feature-product-section-3 section-padding">
+      <div className="container">
+        {/* TITLE */}
+        <div className="section-title-area">
+          <h2>Featured Products</h2>
+
+          {/* CATEGORY TABS */}
+          <div className="product-header">
+            <ul className="nav">
+              {/* ALL */}
+              <li>
+                <button
+                  className={activeTab === "all" ? "active" : ""}
+                  onClick={() => setActiveTab("all")}
+                >
+                  All
+                </button>
+              </li>
+
+              {/* DYNAMIC CATEGORIES */}
+              {categories.map((cat) => (
+                <li key={cat._id}>
+                  <button
+                    className={activeTab === cat._id ? "active" : ""}
+                    onClick={() => setActiveTab(cat._id)}
+                  >
+                    {cat.name.replace(/"/g, "")}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* PRODUCTS GRID */}
+        <div className="row">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <div className="col-xl-3 col-lg-4 col-md-6" key={product._id}>
+                <div className="feature-product-items-2">
+                  {/* IMAGE */}
+                  <div className="product-image">
+                    <img
+                      src={
+                        product.thumbnail
+                          ? `${API}/uploads/${product.thumbnail}`
+                          : "/default.png"
+                      }
+                      alt="product"
+                    />
+
+                    <ul className="product-icon">
+                      <li>
+                        <button onClick={() => addToCartProduct(product)}>
+                          👁
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="product-content">
+                    <h4>{product.title}</h4>
+
+                    <p className="price">₹{product.price}</p>
+
+                    {/* CATEGORY NAME */}
+                    {product.categories?.length > 0 && (
+                      <small>
+                        {product.categories
+                          .map((c) => c.name.replace(/"/g, ""))
+                          .join(", ")}
+                      </small>
+                    )}
+
+                    {/* VIEW BUTTON */}
+                    <div className="mt-2">
+                      <Link href={`/product/${product._id}`}>View Details</Link>
                     </div>
-                    <div className="product-header style-2">
-                        <ul className="nav">
-                            <li className="nav-item">
-                                <button className={`nav-link ${activeTab === 'Tab1' ? 'active' : ''}`} onClick={() => openTab('Tab1')}>
-                                    Best Seller
-                                </button>
-                            </li>
-                            <li className="nav-item">
-                                <button className={`nav-link ${activeTab === 'Tab2' ? 'active' : ''}`} onClick={() => openTab('Tab2')}>
-                                    Top
-                                </button>
-                            </li>
-                            <li className="nav-item" >
-                                <button className={`nav-link ${activeTab === 'Tab3' ? 'active' : ''}`} onClick={() => openTab('Tab3')}>
-                                    New Arrivals
-                                </button>
-                            </li>
-                            <li className="nav-item" >
-                                <button className={`nav-link ${activeTab === 'Tab4' ? 'active' : ''}`} onClick={() => openTab('Tab4')}>
-                                    top rating
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+                  </div>
                 </div>
-                <div className="tab-content">
-                    <div id="Tab1" style={{ display: activeTab === 'Tab1' ? 'block' : 'none' }}>
-                        <div className="row">
-                            {products.length > 0 &&
-                                products.slice(0, 4).map((product, pitem) => (
-                                    <div className="col-xl-3 col-lg-4 col-md-6" key={pitem}>
-                                        <div className="feature-product-items-2">
-                                            <div className="product-image">
-                                                <img src={product.proImg} alt="img" />
-                                                <ul className="product-icon d-grid align-items-center">
-                                                    <li>
-                                                        <button onClick={() => addToCartProduct(product)}>
-                                                                <i className="fa-sharp fa-regular fa-eye"></i>
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i className="fa-regular fa-star"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <Link onClick={ClickHandler} href={'/shop-details/[slug]'} as={`/shop-details/${product.slug}`}>
-                                                        <i className="fa-regular fa-arrow-up-arrow-down"></i>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div className="product-content">
-                                                <ul className="price-list">
-                                                    <li>
-                                                        <span>-5%</span>
-                                                    </li>
-                                                    <li>{product.price}</li>
-                                                    <li>{product.price}</li>
-                                                </ul>
-                                                <h4><Link onClick={ClickHandler} href={'/shop-details/[slug]'} as={`/shop-details/${product.slug}`}>{product.title}</Link></h4>
-                                                <ul className="dot-list">
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                ))}
-                        </div>
-                    </div>
-                    <div id="Tab2" style={{ display: activeTab === 'Tab2' ? 'block' : 'none' }}>
-                        <div className="row">
-                            {products.length > 0 &&
-                                products.slice(4, 8).map((product, pitem) => (
-                                    <div className="col-xl-3 col-lg-4 col-md-6" key={pitem}>
-                                        <div className="feature-product-items-2">
-                                            <div className="product-image">
-                                                <img src={product.proImg} alt="img" />
-                                                <ul className="product-icon d-grid align-items-center">
-                                                    <li>
-                                                        <button onClick={() => addToCartProduct(product)}>
-                                                                <i className="fa-sharp fa-regular fa-eye"></i>
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i className="fa-regular fa-star"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <Link onClick={ClickHandler} href={'/shop-details/[slug]'} as={`/shop-details/${product.slug}`}>
-                                                        <i className="fa-regular fa-arrow-up-arrow-down"></i>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div className="product-content">
-                                                <ul className="price-list">
-                                                    <li>
-                                                        <span>-5%</span>
-                                                    </li>
-                                                    <li>{product.price}</li>
-                                                    <li>{product.price}</li>
-                                                </ul>
-                                                <h4><Link onClick={ClickHandler} href={'/shop-details/[slug]'} as={`/shop-details/${product.slug}`}>{product.title}</Link></h4>
-                                                <ul className="dot-list">
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                ))}
-                        </div>
-                    </div>
-                    <div id="Tab3" style={{ display: activeTab === 'Tab3' ? 'block' : 'none' }}>
-                        <div className="row">
-                            {products.length > 0 &&
-                                products.slice(0, 4).map((product, pitem) => (
-                                    <div className="col-xl-3 col-lg-4 col-md-6" key={pitem}>
-                                        <div className="feature-product-items-2">
-                                            <div className="product-image">
-                                                <img src={product.proImg} alt="img" />
-                                                <ul className="product-icon d-grid align-items-center">
-                                                    <li>
-                                                        <button onClick={() => addToCartProduct(product)}>
-                                                                <i className="fa-sharp fa-regular fa-eye"></i>
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i className="fa-regular fa-star"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <Link onClick={ClickHandler} href={'/shop-details/[slug]'} as={`/shop-details/${product.slug}`}>
-                                                        <i className="fa-regular fa-arrow-up-arrow-down"></i>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div className="product-content">
-                                                <ul className="price-list">
-                                                    <li>
-                                                        <span>-5%</span>
-                                                    </li>
-                                                    <li>{product.price}</li>
-                                                    <li>{product.price}</li>
-                                                </ul>
-                                                <h4><Link onClick={ClickHandler} href={'/shop-details/[slug]'} as={`/shop-details/${product.slug}`}>{product.title}</Link></h4>
-                                                <ul className="dot-list">
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                ))}
-                        </div>
-                    </div>
-                    <div id="Tab4" style={{ display: activeTab === 'Tab4' ? 'block' : 'none' }}>
-                        <div className="row">
-                            {products.length > 0 &&
-                                products.slice(4, 8).map((product, pitem) => (
-                                    <div className="col-xl-3 col-lg-4 col-md-6" key={pitem}>
-                                        <div className="feature-product-items-2">
-                                            <div className="product-image">
-                                                <img src={product.proImg} alt="img" />
-                                                <ul className="product-icon d-grid align-items-center">
-                                                    <li>
-                                                        <button onClick={() => addToCartProduct(product)}>
-                                                                <i className="fa-sharp fa-regular fa-eye"></i>
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i className="fa-regular fa-star"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <Link onClick={ClickHandler} href={'/shop-details/[slug]'} as={`/shop-details/${product.slug}`}>
-                                                        <i className="fa-regular fa-arrow-up-arrow-down"></i>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div className="product-content">
-                                                <ul className="price-list">
-                                                    <li>
-                                                        <span>-5%</span>
-                                                    </li>
-                                                    <li>{product.price}</li>
-                                                    <li>{product.price}</li>
-                                                </ul>
-                                                <h4><Link onClick={ClickHandler} href={'/shop-details/[slug]'} as={`/shop-details/${product.slug}`}>{product.title}</Link></h4>
-                                                <ul className="dot-list">
-                                                    <li></li>
-                                                    <li></li>
-                                                    <li></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+              </div>
+            ))
+          ) : (
+            <p>No Products Found</p>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default ProductSectionS4;
-
-
-
-
-
-

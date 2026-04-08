@@ -64,7 +64,7 @@ const HeaderS3 = (props) => {
                         <Link onClick={ClickHandler} href="/home">
                           Home
                         </Link>
-                        <ul className="submenu has-homemenu">
+                        {/* <ul className="submenu has-homemenu">
                           <li>
                             <div className="homemenu-items">
                               <div className="homemenu">
@@ -120,9 +120,9 @@ const HeaderS3 = (props) => {
                               </div>
                             </div>
                           </li>
-                        </ul>
+                        </ul> */}
                       </li>
-                      <li className="has-dropdown active d-xl-none">
+                      {/* <li className="has-dropdown active d-xl-none">
                         <Link
                           onClick={ClickHandler}
                           href="/team"
@@ -147,7 +147,7 @@ const HeaderS3 = (props) => {
                             </Link>
                           </li>
                         </ul>
-                      </li>
+                      </li> */}
                       <li>
                         <Link onClick={ClickHandler} href="/about">
                           About Us
@@ -173,7 +173,7 @@ const HeaderS3 = (props) => {
                           </li>
                         </ul>
                       </li>
-                      <li className="has-dropdown">
+                      {/* <li className="has-dropdown">
                         <Link onClick={ClickHandler} href="#">
                           Pages
                         </Link>
@@ -197,8 +197,8 @@ const HeaderS3 = (props) => {
                             </Link>
                           </li>
                         </ul>
-                      </li>
-                      <li>
+                      </li> */}
+                      {/* <li>
                         <Link onClick={ClickHandler} href="#">
                           Shop
                         </Link>
@@ -227,8 +227,8 @@ const HeaderS3 = (props) => {
                             </Link>
                           </li>
                         </ul>
-                      </li>
-                      <li>
+                      </li> */}
+                      {/* <li>
                         <Link onClick={ClickHandler} href="#">
                           Blog
                         </Link>
@@ -247,7 +247,7 @@ const HeaderS3 = (props) => {
                             </Link>
                           </li>
                         </ul>
-                      </li>
+                      </li> */}
                       <li>
                         <Link onClick={ClickHandler} href="/contact">
                           Contact Us
@@ -258,7 +258,7 @@ const HeaderS3 = (props) => {
                 </div>
               </div>
               <div className="header-right d-flex justify-content-end align-items-center">
-                <div className="menu-cart">
+                {/* <div className="menu-cart">
                   <Link
                     onClick={ClickHandler}
                     href="/shop-cart"
@@ -267,7 +267,7 @@ const HeaderS3 = (props) => {
                     <i className="far fa-shopping-basket"></i>
                     <span>{carts.length}</span>
                   </Link>
-                </div>
+                </div> */}
                 <div className="content">
                   <p>HOTLINE</p>
                   <h5>

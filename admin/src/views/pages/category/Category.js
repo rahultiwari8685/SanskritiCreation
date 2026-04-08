@@ -86,10 +86,7 @@ const Category = () => {
     const formData = new FormData()
 
     formData.append('name', data.name)
-    // formData.append('slug', data.slug)
     formData.append('parentCategory', data.parentCategory)
-    // formData.append('metaTitle', data.metaTitle)
-    // formData.append('metaDescription', data.metaDescription)
     formData.append('showInMenu', data.showInMenu)
 
     if (data.bannerImage?.[0]) {
@@ -132,9 +129,6 @@ const Category = () => {
 
     setValue('name', cat.name)
     setValue('parent', cat.parent)
-    setValue('slug', cat.slug)
-    setValue('meta_title', cat.meta_title)
-    setValue('meta_desc', cat.meta_desc)
   }
 
   function handleDelete(id) {
@@ -281,19 +275,6 @@ const Category = () => {
                 {errors.name && <small className="text-danger">{errors.name.message}</small>}
               </CCol>
             </CRow>
-            {/* <CRow className="mb-3">
-              <CCol md={12}>
-                <CFormInput
-                  type="text"
-                  label="Slug"
-                  placeholder="Enter Slug"
-                  name="slug"
-                  {...register('slug')}
-                  required
-                />
-                {errors.slug && <small className="text-danger">{errors.slug.message}</small>}
-              </CCol>
-            </CRow> */}
 
             <CRow className="mb-3">
               <CCol md={12}>
@@ -309,37 +290,6 @@ const Category = () => {
                 )}
               </CCol>
             </CRow>
-
-            {/* <CRow className="mb-3">
-              <CCol md={12}>
-                <CFormInput
-                  type="text"
-                  placeholder="Enter Meta Title"
-                  label="Meta Title"
-                  name="name"
-                  {...register('metaTitle', { required: 'Meta Title is required' })}
-                  required
-                />
-                {errors.metaTitle && (
-                  <small className="text-danger">{errors.metaTitle.message}</small>
-                )}
-              </CCol>
-            </CRow>
-            <CRow className="mb-3">
-              <CCol md={12}>
-                <CFormInput
-                  type="text"
-                  placeholder="Enter Meta Description"
-                  label="Meta Description"
-                  name="name"
-                  {...register('metaDescription', { required: 'Meta Description is required' })}
-                  required
-                />
-                {errors.metaDescription && (
-                  <small className="text-danger">{errors.metaDescription.message}</small>
-                )}
-              </CCol>
-            </CRow> */}
 
             <CRow className="mb-3">
               <CCol md={12}>
