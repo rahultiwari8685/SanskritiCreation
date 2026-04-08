@@ -39,7 +39,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Product List',
-        to: '/PublishedBlog',
+        to: '/ProductList',
         icon: <CIcon icon={cilCheckCircle} customClassName="nav-icon" />,
       },
       // {
@@ -68,6 +68,12 @@ const _nav = [
     component: CNavItem,
     name: 'Categories',
     to: '/category',
+    icon: <CIcon icon={cilTags} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Orders',
+    to: '/orders',
     icon: <CIcon icon={cilTags} customClassName="nav-icon" />,
   },
 
