@@ -1,65 +1,84 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import { useRouter } from 'next/router'
+import React, { Fragment, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { connect } from "react-redux";
-import NavbarS2 from '../../components/NavbarS2/NavbarS2';
-import PageTitle from '../../components/pagetitle/PageTitle'
-import CtaSectionS2 from '../../components/CtaSectionS2/CtaSectionS2';
-import FooterS3 from '../../components/footerS3/FooterS3';
-import CursorMaus from '../../components/CursorMaus/CursorMaus';
+
+import NavbarS2 from "../../components/NavbarS2/NavbarS2";
+import PageTitle from "../../components/pagetitle/PageTitle";
+import CtaSectionS2 from "../../components/CtaSectionS2/CtaSectionS2";
+import FooterS3 from "../../components/footerS3/FooterS3";
+import CursorMaus from "../../components/CursorMaus/CursorMaus";
 import { addToCart } from "../../store/actions/action";
-import Product from './product'
-import api from "../../api";
-import ProductTabs from './alltab';
 
+import Product from "./product";
+import ProductTabs from "./alltab";
 
+const ProductSinglePage = (props) => {
+  const router = useRouter();
+  const { id } = router.query;
 
-const ProductSinglePage =(props) => {
-  
+  const { addToCart } = props;
 
-    const router = useRouter()
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const productsArray = api();
-    const Allproduct = productsArray
+  // 🔥 FETCH PRODUCT FROM API
+  useEffect(() => {
+    if (!id) return;
 
-    const { addToCart } = props;
+    const fetchProduct = async () => {
+      try {
+        const res = await fetch(
+          `https://api.sanskritisutracreations.com/api/products/${id}`,
+        );
+        const data = await res.json();
 
-    const initialProducts = Allproduct.filter(prod => prod.slug === router.query.slug);
-    const [product, setProduct] = useState(initialProducts);
+        if (data.success) {
+          setProduct(data.data);
+        }
+      } catch (error) {
+        console.error("Fetch product error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    useEffect(() => {
-        setProduct(Allproduct.filter(prod => prod.slug === router.query.slug));
-      }, [Allproduct, router.query.slug]);
+    fetchProduct();
+  }, [id]);
 
-    const item = product[0];
+  return (
+    <Fragment>
+      <NavbarS2 hclass={"header-section-2 style-two"} />
 
+      <PageTitle
+        pageTitle={product?.title || "Loading..."}
+        pagesub={"Product Single"}
+      />
 
+      <section className="product-details-section section-padding section-bg-2">
+        <div className="container">
+          <div className="product-details-wrapper">
+            {/* 🔄 LOADING */}
+            {loading && <p>Loading product...</p>}
 
-    return(
-        <Fragment>
-            <NavbarS2 hclass={'header-section-2 style-two'} />
-            <PageTitle pageTitle={'Digital printing Service'} pagesub={'Product Single'}/> 
-            <section className="product-details-section section-padding section-bg-2">
-                <div className="container">
-                    <div className="product-details-wrapper">
-                        {item ? <Product
-                            item={item}
-                            addToCart={addToCart}
-                        /> : null}
-                        <ProductTabs />
-                    </div>
-                </div>
-            </section>
-            <CtaSectionS2 />
-            <FooterS3 />
-            <CursorMaus />
-        </Fragment>
-    )
+            {/* ✅ PRODUCT */}
+            {product && <Product item={product} addToCart={addToCart} />}
+
+            <ProductTabs product={product} />
+          </div>
+        </div>
+      </section>
+
+      <CtaSectionS2 />
+      <FooterS3 />
+      <CursorMaus />
+    </Fragment>
+  );
 };
 
-const mapStateToProps = state => {
-    return {
-        products: state.data.products,
-    }
+const mapStateToProps = (state) => {
+  return {
+    products: state.data.products,
+  };
 };
 
 export default connect(mapStateToProps, { addToCart })(ProductSinglePage);
