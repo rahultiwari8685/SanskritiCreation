@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import ShopSidebar from "./ShopSidebar";
+
+import ShopProduct from "../../components/ShopProduct";
 
 const ShopProduct = ({ products, addToCartProduct }) => {
   const ClickHandler = () => {
