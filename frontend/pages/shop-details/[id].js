@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
 
-import NavbarS2 from "../../components/NavbarS2/NavbarS2";
+import NavbarS3 from "../../components/NavbarS3/NavbarS3";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import CtaSectionS2 from "../../components/CtaSectionS2/CtaSectionS2";
 import FooterS3 from "../../components/footerS3/FooterS3";
@@ -47,7 +47,7 @@ const ProductSinglePage = (props) => {
 
   return (
     <Fragment>
-      <NavbarS2 hclass={"header-section-2 style-two"} />
+      <NavbarS3 hclass={"header-section-2 style-two"} />
 
       <PageTitle
         pageTitle={product?.title || "Loading..."}
