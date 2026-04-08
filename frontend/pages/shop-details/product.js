@@ -1,78 +1,91 @@
-import React from 'react';
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
-import Link from 'next/link';
+import React from "react";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+import Link from "next/link";
 
-const Product = ({ item, addToCart }) => {
+const Product = ({ item }) => {
   const ClickHandler = () => {
     window.scrollTo(10, 0);
-  }
+  };
+
+  // 🔥 IMAGE URL
+  const imageUrl = item?.thumbnail
+    ? `https://api.sanskritisutracreations.com/uploads/images/${item.thumbnail}`
+    : "/no-image.png";
 
   return (
     <div className="row g-5">
+      {/* 🔥 IMAGE SECTION */}
       <div className="col-lg-6">
         <div className="product-image-items">
           <div className="tab-content">
-              <div className="product-image">
-                  <img src={item.proImg ? item.proImg : ''} alt="products" />
-              </div>
+            <div className="product-image">
+              <Zoom>
+                <img
+                  src={imageUrl}
+                  alt={item?.title || "product"}
+                  className="w-100"
+                />
+              </Zoom>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* 🔥 DETAILS SECTION */}
       <div className="col-lg-6">
         <div className="product-details-content">
+          {/* ⭐ RATING (STATIC FOR NOW) */}
           <div className="star pb-4">
             <span>-5%</span>
-            <Link onClick={ClickHandler} href="#"> <i className="fas fa-star"></i></Link>
-            <Link onClick={ClickHandler} href="#"><i className="fas fa-star"></i></Link>
-            <Link onClick={ClickHandler} href="#"> <i className="fas fa-star"></i></Link>
-            <Link onClick={ClickHandler} href="#"><i className="fas fa-star"></i></Link>
-            <Link onClick={ClickHandler} href="#" className="color-bg"> <i className="fas fa-star"></i></Link>
-            <Link onClick={ClickHandler} href="#" className="text-color">( 2 Reviews )</Link>
+            {[...Array(5)].map((_, i) => (
+              <Link key={i} onClick={ClickHandler} href="#">
+                <i className="fas fa-star"></i>
+              </Link>
+            ))}
+            <Link onClick={ClickHandler} href="#" className="text-color">
+              ( 2 Reviews )
+            </Link>
           </div>
-          <h3 className="pb-4 split-text right">{item.title}</h3>
-          <p className="mb-4">
-            There are many variations of passages of Lorem Ipsum available, but majority <br />
-            have suffered teration in some form, by injected humour, or randomised
-          </p>
+
+          {/* 🔥 TITLE */}
+          <h3 className="pb-4">{item?.title}</h3>
+
+          {/* 🔥 DESCRIPTION FROM API */}
+          <div className="mb-4">
+            {item?.content?.blocks?.map((block, i) => (
+              <p key={i}>{block?.data?.text}</p>
+            ))}
+          </div>
+
+          {/* 💰 PRICE */}
           <div className="price-list d-flex align-items-center">
-            <span>${item.price}</span>
-            <del>${item.delPrice}</del>
+            <span>₹{item?.price}</span>
           </div>
-          <div className="color-list">
-            <span>Color :</span>
-            <ul className="color-box">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </div>
-          <div className="color-list">
-            <span>Size :</span>
-            <ul className="size-list">
-              <li>XL</li>
-              <li>XXL</li>
-              <li>M</li>
-              <li>L</li>
-              <li>4XL</li>
-            </ul>
-          </div>
-          <div className="cart-wrp">
+
+          {/* 🎨 CATEGORY */}
+          <h6 className="details-info">
+            <span>Category:</span>{" "}
+            {item?.categories?.map((cat) => cat.name).join(", ")}
+          </h6>
+
+          {/* 🚀 BOOK ORDER BUTTON */}
+          <div className="cart-wrp mt-4">
             <div className="shop-button d-flex align-items-center">
-              <button className="theme-btn" onClick={() => addToCart(item)}>
-                <i className="fa-regular fa-basket-shopping"></i> Add To Cart
-              </button>
+              <Link href={`/order/${item?._id}`} className="theme-btn">
+                📦 Book Order
+              </Link>
+
               <Link href="#" className="star-icon">
                 <i className="fal fa-star"></i>
               </Link>
             </div>
           </div>
-          <h6 className="shop-text split-text right">Ground Ound Delivery Surcharge : <span>$80.00</span></h6>
-          <h6 className="details-info"><span>Sku:</span> N/A</h6>
-          <h6 className="details-info"><span>Categories:</span> Pizza</h6>
-          <h6 className="details-info"><span>Tags:</span> Burgers, Tacos</h6>
+
+          {/* EXTRA INFO */}
+          <h6 className="details-info mt-3">
+            <span>Product ID:</span> {item?._id}
+          </h6>
         </div>
       </div>
     </div>
