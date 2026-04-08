@@ -40,9 +40,9 @@ export const getProducts = async (req, res) => {
 
 export const getProduct = async (req, res) => {
   try {
-    const { slug } = req.params;
+    const { id } = req.params;
 
-    const product = await Product.findOne({ slug }).populate(
+    const product = await Product.findById(id).populate(
       "categories",
       "name slug",
     );
@@ -66,6 +66,35 @@ export const getProduct = async (req, res) => {
     });
   }
 };
+
+// export const getProduct = async (req, res) => {
+//   try {
+//     const { slug } = req.params;
+
+//     const product = await Product.findOne({ slug }).populate(
+//       "categories",
+//       "name slug",
+//     );
+
+//     if (!product) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Product not found",
+//       });
+//     }
+
+//     res.status(200).json({
+//       success: true,
+//       data: product,
+//     });
+//   } catch (error) {
+//     console.error("Get Product Error:", error);
+//     res.status(500).json({
+//       success: false,
+//       message: "Server error",
+//     });
+//   }
+// };
 
 export const updateProduct = async (req, res) => {
   try {
