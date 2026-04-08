@@ -152,7 +152,7 @@ const Orders = () => {
             {orders.map((news, index) => (
               <CTableRow key={news.id}>
                 <CTableDataCell>{index + 1}</CTableDataCell>
-                <CTableDataCell>{news.title}</CTableDataCell>
+                <CTableDataCell>{news.productId.title}</CTableDataCell>
                 <CTableDataCell>{news.size}</CTableDataCell>
                 <CTableDataCell>{news.color}</CTableDataCell>
                 <CTableDataCell>{news.phone}</CTableDataCell>

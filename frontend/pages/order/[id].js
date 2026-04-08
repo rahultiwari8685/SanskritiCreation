@@ -1,130 +1,42 @@
+import React, { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+
+import NavbarS2 from "../../components/NavbarS2/NavbarS2";
+import PageTitle from "../../components/pagetitle/PageTitle";
+import OrderSection from "../../components/order/OrderSection";
+import FooterS3 from "../../components/footerS3/FooterS3";
+import CursorMaus from "../../components/CursorMaus/CursorMaus";
 
 const OrderPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    size: "",
-    color: "",
-  });
+  const [product, setProduct] = useState(null);
 
-  const [logo, setLogo] = useState(null);
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    if (!id) return;
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleFile = (e) => {
-    setLogo(e.target.files[0]);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("productId", id);
-    formData.append("name", form.name);
-    formData.append("email", form.email);
-    formData.append("phone", form.phone);
-    formData.append("size", form.size);
-    formData.append("color", form.color);
-    if (logo) formData.append("logo", logo);
-
-    try {
-      setLoading(true);
-
-      const res = await fetch(
-        "https://api.sanskritisutracreations.com/api/orders",
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
-
-      const data = await res.json();
-
-      if (data.success) {
-        alert("Order submitted successfully!");
-        router.push("/");
-      } else {
-        alert(data.message);
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Error submitting order");
-    } finally {
-      setLoading(false);
-    }
-  };
+    fetch(`https://api.sanskritisutracreations.com/api/products/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) setProduct(data.data);
+      });
+  }, [id]);
 
   return (
-    <div className="container mt-5">
-      <h2>Book Order</h2>
+    <Fragment>
+      <NavbarS2 hclass={"header-section-2 style-two"} />
 
-      <form onSubmit={handleSubmit} className="mt-4">
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          className="form-control mb-3"
-          onChange={handleChange}
-          required
-        />
+      <PageTitle
+        pageTitle={product?.title || "Book Order"}
+        pagesub={"Checkout"}
+      />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          className="form-control mb-3"
-          onChange={handleChange}
-          required
-        />
+      <OrderSection productId={id} product={product} />
 
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone"
-          className="form-control mb-3"
-          onChange={handleChange}
-          required
-        />
-
-        <select
-          name="size"
-          className="form-control mb-3"
-          onChange={handleChange}
-        >
-          <option value="">Select Size</option>
-          <option>Small</option>
-          <option>Medium</option>
-          <option>Large</option>
-        </select>
-
-        <input
-          type="text"
-          name="color"
-          placeholder="Color"
-          className="form-control mb-3"
-          onChange={handleChange}
-        />
-
-        <input
-          type="file"
-          className="form-control mb-3"
-          onChange={handleFile}
-        />
-
-        <button className="btn btn-primary" disabled={loading}>
-          {loading ? "Submitting..." : "Submit Order"}
-        </button>
-      </form>
-    </div>
+      <FooterS3 />
+      <CursorMaus />
+    </Fragment>
   );
 };
 
