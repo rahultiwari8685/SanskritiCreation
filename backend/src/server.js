@@ -18,6 +18,7 @@ import customerAuthRoutes from "./routes/customerAuth.js";
 import pollRoutes from "./routes/pollRoutes.js";
 import liveRoutes from "./routes/liveRoutes.js";
 import rateLimit from "express-rate-limit";
+import orderRoutes from "./routes/orderRoutes.js";
 
 const app = express();
 
@@ -84,6 +85,7 @@ app.use("/api/customer-auth", customerAuthRoutes);
 app.use("/api/polls", pollRoutes);
 
 app.use("/api/live", liveRoutes);
+app.use("/api/orders", orderRoutes);
 
 const PORT = process.env.PORT || 5001;
 const MONGO_URI = process.env.MONGO_URI;
