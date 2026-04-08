@@ -99,9 +99,9 @@ const Orders = () => {
     }
   }
 
-  const filteredNews = orders.filter((news) =>
-    news.title.toLowerCase().includes(searchText.toLowerCase()),
-  )
+  // const filteredNews = orders.filter((news) =>
+  //   news.title.toLowerCase().includes(searchText.toLowerCase()),
+  // )
 
   return (
     <CCard className="shadow-sm border-0 rounded-4">
@@ -125,7 +125,7 @@ const Orders = () => {
               <CFormLabel htmlFor="toDate">To Date</CFormLabel>
               <CFormInput type="date" id="toDate" />
             </CCol> */}
-            <CCol md={12}>
+            {/* <CCol md={12}>
               <CFormInput
                 type="text"
                 id="searchText"
@@ -133,38 +133,29 @@ const Orders = () => {
                 value={searchText} // bind state
                 onChange={(e) => setSearchText(e.target.value)} // update state
               />
-            </CCol>
+            </CCol> */}
           </CRow>
         </CForm>
 
-        {/* 📋 Table */}
         <CTable align="middle" hover responsive bordered>
           <CTableHead color="light">
             <CTableRow>
               <CTableHeaderCell scope="col">#</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Title</CTableHeaderCell>
-              <CTableHeaderCell scope="col">Category</CTableHeaderCell>
-              {/* <CTableHeaderCell scope="col">Author</CTableHeaderCell> */}
-              <CTableHeaderCell scope="col">Date</CTableHeaderCell>
+              <CTableHeaderCell scope="col">Product Name</CTableHeaderCell>
+              <CTableHeaderCell scope="col">Size</CTableHeaderCell>
+              <CTableHeaderCell scope="col">Color</CTableHeaderCell>
+              <CTableHeaderCell scope="col">Phone</CTableHeaderCell>
               <CTableHeaderCell scope="col">Action</CTableHeaderCell>
             </CTableRow>
           </CTableHead>
           <CTableBody>
-            {filteredNews.map((news, index) => (
+            {orders.map((news, index) => (
               <CTableRow key={news.id}>
                 <CTableDataCell>{index + 1}</CTableDataCell>
                 <CTableDataCell>{news.title}</CTableDataCell>
-
-                {/* ✅ Show all category names */}
-                <CTableDataCell>
-                  {news.categories && news.categories.length > 0
-                    ? news.categories.map((cat) => cat.name).join(', ')
-                    : '-'}
-                </CTableDataCell>
-
-                {/* <CTableDataCell>{news.user_id}</CTableDataCell> */}
-                <CTableDataCell>{new Date(news.createdAt).toLocaleDateString()}</CTableDataCell>
-
+                <CTableDataCell>{news.size}</CTableDataCell>
+                <CTableDataCell>{news.color}</CTableDataCell>
+                <CTableDataCell>{news.phone}</CTableDataCell>
                 <CTableDataCell>
                   <CButton
                     size="sm"
