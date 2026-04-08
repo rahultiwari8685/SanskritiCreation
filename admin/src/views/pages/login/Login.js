@@ -70,7 +70,7 @@ const Login = () => {
       {/* Background Abstract Illustration */}
       <div style={styles.leftPane}>
         <div style={styles.leftContent}>
-          <h1 style={styles.title}>Sankriti Creation</h1>
+          <h1 style={styles.title}>Sanskriti Creation</h1>
           {/* <p style={styles.subtitle}>
             Data-driven political insights, leader performance analysis, sentiment tracking, and
             detailed survey intelligence — all on one platform.

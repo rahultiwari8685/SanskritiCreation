@@ -49,7 +49,7 @@ const AppSidebar = () => {
               textTransform: 'uppercase',
             }}
           >
-            Sankriti Admin
+            Sanskriti Admin
           </span>
         </div>
 

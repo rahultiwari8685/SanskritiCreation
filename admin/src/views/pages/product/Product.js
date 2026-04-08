@@ -96,6 +96,9 @@ const Product = () => {
     formData.append('price', data.price)
     formData.append('categories', JSON.stringify(data.categories))
     formData.append('content', JSON.stringify(content))
+    if (data.thumbnail?.[0]) {
+      formData.append('thumbnail', data.thumbnail[0])
+    }
 
     const endpoint = '/api/products/saveProduct'
 
