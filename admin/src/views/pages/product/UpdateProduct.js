@@ -35,7 +35,7 @@ const UpdateProduct = () => {
   const { id } = useParams()
 
   const [slugEdited, setSlugEdited] = useState(false)
-  const [editingNews, setEditingNews] = useState(null)
+  const [editingNews, setEditingNews] = useState(true)
   const [newsList, setNewsList] = useState([])
   const [categoriesList, setCategoryList] = useState([])
   const [content, setContent] = useState({})

@@ -59,7 +59,7 @@ const ProductList = () => {
   // };
 
   const handleEdit = (news) => {
-    navigate(`/UpdateProduct/${news.id}`)
+    navigate(`/UpdateProduct/${news._id}`)
   }
 
   function handleDelete(id) {
