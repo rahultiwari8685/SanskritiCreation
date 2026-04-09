@@ -109,9 +109,13 @@ export const updateProduct = async (req, res) => {
 
     if (req.file) updateData.thumbnail = req.file.filename;
 
-    const updated = await Product.findByIdAndUpdate(req.params.id, updateData, {
-      new: true,
-    });
+    const updated = await Product.findByIdAndUpdate(
+      req.params._id,
+      updateData,
+      {
+        new: true,
+      },
+    );
 
     return res.status(200).json({ success: true, data: updated });
   } catch (error) {

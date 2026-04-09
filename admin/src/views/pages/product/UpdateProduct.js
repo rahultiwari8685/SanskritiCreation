@@ -125,7 +125,7 @@ const UpdateProduct = () => {
   const updateProduct = async (data) => {
     const formData = new FormData()
 
-    formData.append('id', id)
+    formData.append('_id', id)
     formData.append('title', data.title)
     formData.append('price', data.price)
     formData.append('categories', JSON.stringify(data.categories))
@@ -134,7 +134,7 @@ const UpdateProduct = () => {
       formData.append('thumbnail', data.thumbnail[0])
     }
 
-    const endpoint = '/api/products/updateProduct'
+    const endpoint = '/api/products/:id'
 
     const res = await fetch(setting.api + endpoint, {
       method: 'POST',
