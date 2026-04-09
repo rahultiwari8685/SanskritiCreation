@@ -7,7 +7,7 @@ const Plans = React.lazy(() => import('./views/pages/plans/Plans'))
 const Polls = React.lazy(() => import('./views/pages/polls/Polls'))
 const Subscription = React.lazy(() => import('./views/pages/subscription/Subscriptions'))
 const Customers = React.lazy(() => import('./views/pages/customers/Customers'))
-const UpdateBlog = React.lazy(() => import('./views/pages/product/UpdateBlog'))
+const UpdateBlog = React.lazy(() => import('./views/pages/product/UpdateProduct'))
 const ProductList = React.lazy(() => import('./views/pages/product/ProductList'))
 const Orders = React.lazy(() => import('./views/pages/product/Orders'))
 const DraftBlog = React.lazy(() => import('./views/pages/product/DraftBlog'))
@@ -28,7 +28,7 @@ const routes = [
   { path: '/plans', name: 'Plans', element: Plans },
   { path: '/polls', name: 'Polls', element: Polls },
   { path: '/subscription', name: 'Subscription', element: Subscription },
-  // { path: '/UpdateBlog/:id', name: 'Update Blog', element: UpdateBlog },
+  { path: '/UpdateProduct/:id', name: 'Update Product', element: UpdateProduct },
   { path: '/ProductList', name: 'Product List', element: ProductList },
   { path: '/orders', name: 'Orders', element: Orders },
   { path: '/DraftBlog', name: 'Draft Blog', element: DraftBlog },
