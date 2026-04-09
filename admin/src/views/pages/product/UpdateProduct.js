@@ -57,6 +57,35 @@ const UpdateProduct = () => {
     },
   })
 
+  const getProduct = async () => {
+    try {
+      const res = await fetch(setting.api + `/api/products/${id}`, {
+        headers: {
+          Authorization: 'Bearer ' + JSON.parse(secureLocalStorage.getItem('logininfo')).token,
+        },
+      })
+
+      const data = await res.json()
+
+      if (data.success) {
+        const product = data.data
+
+        // 🔥 SET FORM VALUES
+        setValue('title', product.title)
+        setValue('price', product.price)
+        setValue(
+          'categories',
+          product.categories.map((c) => c._id),
+        )
+
+        // 🔥 SET EDITOR CONTENT
+        setContent(product.content || {})
+      }
+    } catch (err) {
+      console.error('Get product error:', err)
+    }
+  }
+
   const formDataValues = watch()
 
   const toggleCategory = (id) => {
@@ -90,6 +119,7 @@ const UpdateProduct = () => {
 
   useEffect(() => {
     getAllCategory()
+    getProduct()
   }, [])
 
   const updateProduct = async (data) => {
@@ -218,6 +248,13 @@ const UpdateProduct = () => {
                       accept="image/*"
                       {...register('thumbnail')}
                     />
+
+                    {formDataValues.thumbnail && typeof formDataValues.thumbnail === 'string' && (
+                      <img
+                        src={`${setting.api}/uploads/images/${formDataValues.thumbnail}`}
+                        width="100"
+                      />
+                    )}
                   </CCol>
                 </CCol>
               </CRow>
