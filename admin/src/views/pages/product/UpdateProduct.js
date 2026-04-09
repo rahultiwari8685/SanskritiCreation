@@ -125,19 +125,17 @@ const UpdateProduct = () => {
   const updateProduct = async (data) => {
     const formData = new FormData()
 
-    formData.append('_id', id)
     formData.append('title', data.title)
     formData.append('price', data.price)
     formData.append('categories', JSON.stringify(data.categories))
     formData.append('content', JSON.stringify(content))
+
     if (data.thumbnail?.[0]) {
       formData.append('thumbnail', data.thumbnail[0])
     }
 
-    const endpoint = '/api/products/:id'
-
-    const res = await fetch(setting.api + endpoint, {
-      method: 'POST',
+    const res = await fetch(`${setting.api}/api/products/${id}`, {
+      method: 'PUT', // 🔥 IMPORTANT
       body: formData,
       headers: {
         Authorization: 'Bearer ' + JSON.parse(secureLocalStorage.getItem('logininfo')).token,
@@ -145,10 +143,12 @@ const UpdateProduct = () => {
     })
 
     const result = await res.json()
-    if (result.success === true) {
+
+    if (result.success) {
       reset({})
       navigate('/ProductList')
     }
+
     console.log('API Response:', result)
   }
 
