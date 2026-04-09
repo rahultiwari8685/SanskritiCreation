@@ -147,7 +147,7 @@ const ProductList = () => {
           </CTableHead>
           <CTableBody>
             {filteredNews.map((news, index) => (
-              <CTableRow key={news.id}>
+              <CTableRow key={news._id}>
                 <CTableDataCell>{index + 1}</CTableDataCell>
                 <CTableDataCell>{news.title}</CTableDataCell>
 
