@@ -32,10 +32,10 @@ import CIcon from '@coreui/icons-react'
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
-  parentCategory: yup
-    .string()
-    .nullable()
-    .transform((value) => (value === '' ? null : value)),
+  parentCategory: yup.string().required('Parent Category is required'),
+  // slug: yup.string(),
+  // metaTitle: yup.string().required('Meta Title is required'),
+  // metaDescription: yup.string().required('Meta Description is required'),
   showInMenu: yup.string().required('Show in Menu is required'),
   bannerImage: yup.mixed().required('Banner Image is required'),
 })
