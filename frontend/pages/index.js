@@ -49,8 +49,8 @@ const HomePage3 = ({ addToCart }) => {
       {/* <BlogSectionS3
         hclass={"blog-section-3 section-padding"}
         SubClass="blog-wrapper"
-      />
-      <CtaSectionS2 /> */}
+      /> */}
+      <CtaSectionS2 />
       <FooterS3 />
       <CursorMaus />
     </Fragment>

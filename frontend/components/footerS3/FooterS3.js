@@ -4,7 +4,7 @@ import Services from "../../api/Services";
 import Shape1 from "/public/images/footer/line-shape.png";
 import Shape2 from "/public/images/footer/star.png";
 import Shape3 from "/public/images/mail.png";
-import Logo from "/public/images/logo/sanskriti_logo2.svg";
+import Logo from "/public/images/logo/sanskriti_dark.svg";
 import Image from "next/image";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
