@@ -2,19 +2,25 @@ import Category from "../models/Category.js";
 
 export const createCategory = async (req, res) => {
   try {
-    const { name, parentCategory, showInMenu } = req.body;
+    let { name, parentCategory, showInMenu } = req.body;
 
     if (!name) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Name is required" });
+      return res.status(400).json({
+        success: false,
+        message: "Name is required",
+      });
+    }
+
+    // 🔥 FIX HERE
+    if (!parentCategory || parentCategory === "0") {
+      parentCategory = null;
     }
 
     const bannerImage = req.file ? req.file.filename : "";
 
     const category = await Category.create({
       name,
-      parentCategory: parentCategory || null,
+      parentCategory,
       showInMenu,
       bannerImage,
     });

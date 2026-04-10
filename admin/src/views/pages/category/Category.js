@@ -32,10 +32,10 @@ import CIcon from '@coreui/icons-react'
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
-  parentCategory: yup.string().required('Parent Category is required'),
-  // slug: yup.string(),
-  // metaTitle: yup.string().required('Meta Title is required'),
-  // metaDescription: yup.string().required('Meta Description is required'),
+  parentCategory: yup
+    .string()
+    .nullable()
+    .transform((value) => (value === '' ? null : value)),
   showInMenu: yup.string().required('Show in Menu is required'),
   bannerImage: yup.mixed().required('Banner Image is required'),
 })
@@ -278,11 +278,8 @@ const Category = () => {
 
             <CRow className="mb-3">
               <CCol md={12}>
-                <CFormSelect
-                  label="Parent Category"
-                  {...register('parentCategory', { required: 'Parent Category is required' })}
-                >
-                  <option value="">Select Category</option>
+                <CFormSelect label="Parent Category" {...register('parentCategory')}>
+                  <option>Select Category</option>
                   <option value="">As Parent</option>
 
                   {category && category.map((a, i) => <option value={a._id}>{a.name}</option>)}
