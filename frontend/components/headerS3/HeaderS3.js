@@ -154,14 +154,19 @@ const HeaderS3 = (props) => {
                           About Us
                         </Link>
                       </li>
+                      <li>
+                        <Link onClick={ClickHandler} href="/shop">
+                          Products
+                        </Link>
+                      </li>
                       {/* <li>
                         <Link onClick={ClickHandler} href="#">
-                          Services
+                          Projects
                         </Link>
                         <ul className="submenu">
                           <li>
                             <Link onClick={ClickHandler} href="/service">
-                              Services
+                              P
                             </Link>
                           </li>
                           <li>

@@ -74,7 +74,7 @@ const Hero3 = () => {
                       to create an amazing website that looks
                     </p>
                   </div>
-                  {/* <div className="hero-button">
+                  <div className="hero-button">
                     <Link
                       onClick={ClickHandler}
                       href="/shop"
@@ -82,7 +82,7 @@ const Hero3 = () => {
                     >
                       Order Today
                     </Link>
-                  </div> */}
+                  </div>
                 </div>
                 <div className="col-xxl-5 col-xl-6 col-lg-6">
                   <div className="hero-image-items">
@@ -122,9 +122,15 @@ const Hero3 = () => {
                       to create an amazing website that looks
                     </p>
                   </div>
-                  {/* <div className="hero-button">
-                                        <Link onClick={ClickHandler} href="/shop" className="theme-btn">Order Today</Link>
-                                    </div> */}
+                  <div className="hero-button">
+                    <Link
+                      onClick={ClickHandler}
+                      href="/shop"
+                      className="theme-btn"
+                    >
+                      Order Today
+                    </Link>
+                  </div>
                 </div>
                 <div className="col-xxl-5 col-xl-6 col-lg-6">
                   <div className="hero-image-items">
@@ -164,7 +170,7 @@ const Hero3 = () => {
                       to create an amazing website that looks
                     </p>
                   </div>
-                  {/* <div className="hero-button">
+                  <div className="hero-button">
                     <Link
                       onClick={ClickHandler}
                       href="/shop"
@@ -172,7 +178,7 @@ const Hero3 = () => {
                     >
                       Order Today
                     </Link>
-                  </div> */}
+                  </div>
                 </div>
                 <div className="col-xxl-5 col-xl-6 col-lg-6">
                   <div className="hero-image-items">
