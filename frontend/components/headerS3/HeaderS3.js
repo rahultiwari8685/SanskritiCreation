@@ -154,7 +154,7 @@ const HeaderS3 = (props) => {
                           About Us
                         </Link>
                       </li>
-                      <li>
+                      {/* <li>
                         <Link onClick={ClickHandler} href="#">
                           Services
                         </Link>
@@ -173,7 +173,7 @@ const HeaderS3 = (props) => {
                             </Link>
                           </li>
                         </ul>
-                      </li>
+                      </li> */}
                       {/* <li className="has-dropdown">
                         <Link onClick={ClickHandler} href="#">
                           Pages
