@@ -137,7 +137,6 @@ const Login = () => {
   )
 }
 
-/* ---------------- STYLES ---------------- */
 const styles = {
   wrapper: {
     minHeight: '100vh',

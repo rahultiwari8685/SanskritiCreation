@@ -97,6 +97,7 @@ const OrderSection = ({ productId, product }) => {
 
                 <input
                   type="file"
+                  placeholder="Upload Logo"
                   className="form-control"
                   onChange={handleFile}
                 />
@@ -114,6 +115,7 @@ const OrderSection = ({ productId, product }) => {
                       <div className="col-lg-6">
                         <input
                           type="text"
+                          color="primary"
                           name="name"
                           placeholder="Full Name"
                           onChange={handleChange}
@@ -125,6 +127,7 @@ const OrderSection = ({ productId, product }) => {
                         <input
                           type="email"
                           name="email"
+                          color="primary"
                           placeholder="Email"
                           onChange={handleChange}
                           required
@@ -135,6 +138,7 @@ const OrderSection = ({ productId, product }) => {
                         <input
                           type="text"
                           name="phone"
+                          color="primary"
                           placeholder="Phone Number"
                           onChange={handleChange}
                           required

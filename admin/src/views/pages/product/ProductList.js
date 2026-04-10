@@ -175,7 +175,7 @@ const ProductList = () => {
                     size="sm"
                     color="danger"
                     className="rounded-pill px-3 shadow-sm fw-semibold"
-                    onClick={() => handleDelete(news.id)}
+                    onClick={() => handleDelete(news._id)}
                   >
                     <CIcon icon={cilTrash} /> Delete
                   </CButton>

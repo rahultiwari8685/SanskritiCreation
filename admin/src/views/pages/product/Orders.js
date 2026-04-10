@@ -166,14 +166,14 @@ const Orders = () => {
                     <CIcon icon={cilPencil} /> Edit
                   </CButton>
                   {'   '}
-                  <CButton
+                  {/* <CButton
                     size="sm"
                     color="danger"
                     className="rounded-pill px-3 shadow-sm fw-semibold"
                     onClick={() => handleDelete(news.id)}
                   >
                     <CIcon icon={cilTrash} /> Delete
-                  </CButton>
+                  </CButton> */}
                 </CTableDataCell>
               </CTableRow>
             ))}
