@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { removeFromCart } from "../../store/actions/action";
 import HeaderTopbarS3 from "../HeaderTopbarS3/HeaderTopbarS3";
 // import Logo from "/public/images/logo/black-logo.svg";
-import Logo from "/public/images/logo/sanskriti_logo.svg";
+import Logo from "/public/images/logo/sanskriti_logo1.svg";
 import Home1 from "/public/images/header/home-1.jpg";
 import Home2 from "/public/images/header/home-2.jpg";
 import Home3 from "/public/images/header/home-3.jpg";
