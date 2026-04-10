@@ -104,13 +104,13 @@ const Category = () => {
     try {
       const res = await fetch(setting.api + endpoint, {
         method: 'POST',
-
         body: formData,
       })
 
       const result = await res.json()
 
       if (result.success === true) {
+        alert(result.message || 'Category saved successfully')
         reset()
         getAllCategory()
         setEditingCategory(null)
@@ -282,7 +282,7 @@ const Category = () => {
                   label="Parent Category"
                   {...register('parentCategory', { required: 'Parent Category is required' })}
                 >
-                  <option value="0">As Parent</option>
+                  <option value="">As Parent</option>
                   {category && category.map((a, i) => <option value={a._id}>{a.name}</option>)}
                 </CFormSelect>
                 {errors.parentCategory && (

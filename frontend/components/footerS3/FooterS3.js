@@ -150,18 +150,18 @@ const FooterS3 = () => {
                 </div>
                 <div className="footer-content">
                   <p className="text-white">
-                    2972 Westheimer Rd. Santa Ana, <br />
-                    Illinois 85486
+                    Sector 11, Takrohi Market, <br />
+                    Indiranagar, Lucknow, Uttar Pradesh 226016
                   </p>
                   <ul className="contact-list">
                     <li>
                       <Link onClick={ClickHandler} href="#" className="link">
-                        contact@info.com
+                        contact@sanskriticreation.com
                       </Link>
                     </li>
                     <li>
-                      <Link onClick={ClickHandler} href="tel:+8060008899">
-                        +806 (000) 88 99
+                      <Link onClick={ClickHandler} href="tel:+919889910094">
+                        +91 9889910094
                       </Link>
                     </li>
                   </ul>
@@ -181,7 +181,7 @@ const FooterS3 = () => {
           </AnchorLink>
           <div className="footer-wrapper d-flex align-items-center justify-content-between">
             <p className="wow fadeInLeft" data-wow-delay=".3s">
-              Copyright <span>@2024</span>{" "}
+              Copyright <span>@2026</span>{" "}
               <Link onClick={ClickHandler} href="/home">
                 Ui-drops
               </Link>{" "}
