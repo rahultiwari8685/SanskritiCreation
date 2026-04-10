@@ -63,7 +63,7 @@ const ProductSinglePage = (props) => {
             {/* ✅ PRODUCT */}
             {product && <Product item={product} addToCart={addToCart} />}
 
-            <ProductTabs product={product} />
+            {/* <ProductTabs product={product} /> */}
           </div>
         </div>
       </section>

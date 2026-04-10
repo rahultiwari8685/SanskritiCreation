@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import NavbarS2 from "../../components/NavbarS2/NavbarS2";
+import NavbarS3 from "../../components/NavbarS3/NavbarS3";
 import PageTitle from "../../components/pagetitle/PageTitle";
 import OrderSection from "../../components/order/OrderSection";
 import FooterS3 from "../../components/footerS3/FooterS3";
@@ -25,7 +25,7 @@ const OrderPage = () => {
 
   return (
     <Fragment>
-      <NavbarS2 hclass={"header-section-2 style-two"} />
+      <NavbarS3 hclass={"header-section-2 style-two"} />
 
       <PageTitle pageTitle={product?.title || "Book Order"} pagesub={"Order"} />
 

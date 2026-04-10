@@ -23,18 +23,18 @@ const AboutPage = () => {
       />
       <About2 hclass={"about-section section-padding"} />
       <MarqueeSection hclass={"marquee-section"} />
-      <ServiceSection
+      {/* <ServiceSection
         hclass={"service-section bg-cover section-padding"}
         Bg={"/images/service/service-bg.jpg"}
-      />
-      <FunFact hclass={"counter-section fix section-padding"} />
-      <WorksSection
+      /> */}
+      {/* <FunFact hclass={"counter-section fix section-padding"} /> */}
+      {/* <WorksSection
         hclass={"about-feature-section fix section-padding pt-0 bg-cover"}
         eclass={"about-feature-wrapper style-2"}
-      />
-      <CtaVideoSection />
+      /> */}
+      {/* <CtaVideoSection />
       <ProcessSectionS2 />
-      <TestimonialSectionS3 />
+      <TestimonialSectionS3 /> */}
       <CtaSectionS2 />
       <FooterS3 />
       <CursorMaus />
